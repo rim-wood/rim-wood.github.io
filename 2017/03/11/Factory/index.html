@@ -13,14 +13,12 @@
 <meta property="og:site_name" content="冰梨">
 <meta property="og:description" content="工厂模式是设计模式中比较基础也是比较常见的模式，一般用在创建对象上，所以属于创建型模式。工厂模式也分三种:简单工厂模式、工厂模式、抽象工厂模式。下面会对每个模式从解释、UML、代码进行详细说明">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/EasyFactory.png">
-<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/Factory.png">
-<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/AbstractFactory.png">
-<meta property="og:updated_time" content="2017-10-09T03:04:58.290Z">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/Factory.png">
+<meta property="og:updated_time" content="2017-10-16T02:15:41.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工厂模式（Factory Method）">
 <meta name="twitter:description" content="工厂模式是设计模式中比较基础也是比较常见的模式，一般用在创建对象上，所以属于创建型模式。工厂模式也分三种:简单工厂模式、工厂模式、抽象工厂模式。下面会对每个模式从解释、UML、代码进行详细说明">
-<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/EasyFactory.png">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/Factory.png">
     
 
     
@@ -165,7 +163,7 @@
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                4
+                5
                 <span>标签</span>
             </div>
         </div>
@@ -191,6 +189,14 @@
             
             <section id="main"><article id="post-Factory" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/Factory.png" class="article-banner" />
+	
+
+
+
         
         
             <header class="article-header">
@@ -233,14 +239,14 @@
             
             <p>工厂模式是设计模式中比较基础也是比较常见的模式，一般用在创建对象上，所以属于创建型模式。工厂模式也分三种:简单工厂模式、工厂模式、抽象工厂模式。下面会对每个模式从解释、UML、代码进行详细说明<br><a id="more"></a></p>
 <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><strong>简单工厂模式主要的意图就是抽象化实体类，让子类去决定实例化。</strong><br>在小米加步枪时代，你需要一辆马车，你需要自己去创造。而在飞机大炮时代，你需要一辆汽车，你就会找工厂造一台，如果需求再变通一点，甲需要宝马，乙需要奥迪。所以造车的工厂就要能造两种车，而简单工厂模式就符合这种需求。这个优点就是调用者创建对象只需通过工厂创建，扩展性高</p>
-<h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/EasyFactory.png" alt=""></p>
+<h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/EasyFactory.png" alt=""></p>
 <h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>Car接口基类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>BMW类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">Car</span></span>&#123;</div><div class="line">   <span class="meta">@Override</span>  </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"BMW is run!"</span>);  </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>AUTO类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AUTO</span> <span class="keyword">implements</span> <span class="title">Car</span></span>&#123;</div><div class="line">   <span class="meta">@Override</span>  </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"AUTO is run!"</span>);  </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>工厂类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarFactory</span></span>&#123;</div><div class="line">   </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BMW <span class="title">CreateBMW</span><span class="params">()</span> </span>&#123;  </div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> BMW();  </div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AUTO <span class="title">CreateAUTO</span><span class="params">()</span> </span>&#123;  </div><div class="line">          <span class="keyword">return</span> <span class="keyword">new</span> AUTO();  </div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>具体调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">   </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span></span>&#123;  </div><div class="line">       BMW bmw = CarFactory.CreateBMW();</div><div class="line">       bmw.run();</div><div class="line">       AUTO auto = CarFactory.CreateAUTO();</div><div class="line">       auto.run();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h2><h3 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h3><p>工厂模式显然是对简单工厂模式的一种改进或者说是完善，遵循开闭原则。<strong>一个抽象工厂类派生出多个具体工厂类，具体工厂类只能生产对应的具体产品</strong>在现实需求中，宝马工厂和奥迪工厂肯定是不同的工厂，所以对工厂也进行抽象,这样就方便扩展了，当又来一种汽车时，只需要另外开辟一个工厂，而不要对原来工厂进行修改。</p>
-<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/Factory.png" alt=""></p>
+<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/Factory.png" alt=""></p>
 <h3 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h3><p>Car接口基类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>BMW类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">Car</span></span>&#123;</div><div class="line">   <span class="meta">@Override</span>  </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"BMW is run!"</span>);  </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>AUTO类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AUTO</span> <span class="keyword">implements</span> <span class="title">Car</span></span>&#123;</div><div class="line">   <span class="meta">@Override</span>  </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"AUTO is run!"</span>);  </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -249,7 +255,7 @@
 <p>AUTO工厂类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AUTOFactory</span> <span class="keyword">implements</span> <span class="title">CarFactor</span>&lt;<span class="title">AUTO</span>&gt;</span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> AUTO <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> AUTO();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>具体调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">   </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span></span>&#123;  </div><div class="line">      AUTOFactory autoFactory = <span class="keyword">new</span> AUTOFactory();</div><div class="line">      AUTO auto = autoFactory.create();</div><div class="line">      auto.run();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h3 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h3><p>抽象工厂模式跟工厂模式最大的区别可能就是把产品再进行抽象，也就是<strong>一个抽象工厂类派生出多个具体工厂类，而具体工厂类可以生产出多个具体产品</strong>因为在现实生活中，很多产品都是一系列的，一个<strong>产品族</strong>。还按照上面的汽车的案例分析，现实生活中，你需要一台宝马，不可能说就是一种类型宝马，那宝马公司就去玩蛋蛋了，用户可能根据排量、汽车空间、稳定性、安全性各方面进行选择。所以宝马公司必须推出各个型号的子产品，例如3系和5系两款车，3系里面又包含1.5L排量的和2.0L排量的，5系同理。在实现这个需求上，我们就要对产品进行抽象，然后具体工厂写出对应的生产策略。</p>
-<h3 id="UML-1"><a href="#UML-1" class="headerlink" title="UML"></a>UML</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/AbstractFactory.png" alt=""></p>
+<h3 id="UML-1"><a href="#UML-1" class="headerlink" title="UML"></a>UML</h3><p><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/AbstractFactory.png" alt=""></p>
 <h3 id="示例代码-2"><a href="#示例代码-2" class="headerlink" title="示例代码"></a>示例代码</h3><p>3系BMW抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW320i</span></span>&#123;</div><div class="line">   <span class="comment">//排量</span></div><div class="line">   <span class="keyword">private</span> <span class="keyword">float</span> displacement;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">BMW320i</span><span class="params">(<span class="keyword">float</span> displacement)</span></span>&#123;</div><div class="line">         <span class="keyword">this</span>.displacement = displacement;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</div><div class="line">   <span class="comment">//省略GET、SET</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>5系BMW抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW532i</span></span>&#123;</div><div class="line">   <span class="comment">//排量</span></div><div class="line">   <span class="keyword">private</span> <span class="keyword">float</span> displacement;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">BMW532i</span><span class="params">(<span class="keyword">float</span> displacement)</span></span>&#123;</div><div class="line">         <span class="keyword">this</span>.displacement = displacement;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</div><div class="line">   <span class="comment">//省略GET、SET</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>1.5L的BMW3系类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW320i150</span> <span class="keyword">extends</span> <span class="title">BMW320i</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BMW320i150</span><span class="params">(<span class="keyword">float</span> displacement)</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>(displacement);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.printf(<span class="string">"this is a"</span>+<span class="keyword">this</span>.getDisplacement()+<span class="string">"L 320i"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -421,7 +427,7 @@
                             <a href="/2017/03/11/Factory/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/Factory.png)" alt="工厂模式（Factory Method）" class="thumbnail-image"></span>
     
 </a>
 
@@ -440,14 +446,14 @@
                             <a href="/2017/03/10/EffectiveJava/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/effectivejava/1/java.jpg)" alt="《Effective Java》阅读记录" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/设计模式/">设计模式</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Effective-Java/">Effective Java</a></p>
                             <p class="item-title"><a href="/2017/03/10/EffectiveJava/" class="title">《Effective Java》阅读记录</a></p>
                             <p class="item-date"><time datetime="2017-03-10T07:30:02.000Z" itemprop="datePublished">2017-03-10</time></p>
                         </div>
@@ -459,7 +465,7 @@
                             <a href="/2017/03/10/DesignPattern/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/introduction/design.png)" alt="设计模式（Design Pattern）" class="thumbnail-image"></span>
     
 </a>
 
@@ -478,7 +484,7 @@
                             <a href="/2016/12/09/SpringBoot1/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/springboot/1/spring.jpg)" alt="SpringBoot学习-基本使用" class="thumbnail-image"></span>
     
 </a>
 
@@ -497,7 +503,7 @@
                             <a href="/2016/12/08/Markdown/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/markdown/markdown.jpg)" alt="Markdown学习" class="thumbnail-image"></span>
     
 </a>
 
@@ -519,7 +525,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常学习/">日常学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Effective-Java/">Effective Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常学习/">日常学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -537,7 +543,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-Java/">Effective Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -546,7 +552,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/设计模式/" style="font-size: 20px;">设计模式</a>
+            <a href="/tags/Effective-Java/" style="font-size: 10px;">Effective Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
         </div>
     </div>
 
