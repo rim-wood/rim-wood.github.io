@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: SpringBoot | 冰梨</title>
+    <title>设计模式（Design Pattern） | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/tags/SpringBoot/index.html">
+    <meta name="description" content="设计模式是前人通过不断实践总结出来的经验。在日常编码也时有用到，更多的体现是在各大框架设计里面。之前自己学习过，但没有通过自己总结出来，接下来，我将系统的总结设计模式，加深自己对设计模式的理解">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式（Design Pattern）">
+<meta property="og:url" content="http://www.icepear.cn/2017/03/10/designpattern/DesignPattern/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="设计模式是前人通过不断实践总结出来的经验。在日常编码也时有用到，更多的体现是在各大框架设计里面。之前自己学习过，但没有通过自己总结出来，接下来，我将系统的总结设计模式，加深自己对设计模式的理解">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/introduction/design.png">
+<meta property="og:updated_time" content="2017-10-16T08:57:18.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="设计模式（Design Pattern）">
+<meta name="twitter:description" content="设计模式是前人通过不断实践总结出来的经验。在日常编码也时有用到，更多的体现是在各大框架设计里面。之前自己学习过，但没有通过自己总结出来，接下来，我将系统的总结设计模式，加深自己对设计模式的理解">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/introduction/design.png">
     
 
     
@@ -180,50 +187,245 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#SpringBoot</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-designpattern/DesignPattern" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/introduction/design.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/12/09/springboot/SpringBoot1/">SpringBoot学习-基本使用</a>
+        <h1 class="article-title" itemprop="name">
+            设计模式（Design Pattern）
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/09/springboot/SpringBoot1/">
-            <time datetime="2016-12-09T11:30:02.000Z" itemprop="datePublished">2016-12-09</time>
+        <a href="/2017/03/10/designpattern/DesignPattern/">
+            <time datetime="2017-03-10T07:30:02.000Z" itemprop="datePublished">2017-03-10</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">1.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、创建型模式："><span class="toc-number">1.1.1.</span> <span class="toc-text">一、创建型模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、结构型模式"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、结构型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、行为型模式"><span class="toc-number">1.1.3.</span> <span class="toc-text">三、行为型模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六大原则"><span class="toc-number">1.2.</span> <span class="toc-text">六大原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、单一职责原则"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、单一职责原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、开闭原则"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、开闭原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、里氏代换原则"><span class="toc-number">1.2.3.</span> <span class="toc-text">三、里氏代换原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、依赖倒置原则"><span class="toc-number">1.2.4.</span> <span class="toc-text">四、依赖倒置原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、接口隔离原则"><span class="toc-number">1.2.5.</span> <span class="toc-text">五、接口隔离原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、迪米特原则-最少知道原则"><span class="toc-number">1.2.6.</span> <span class="toc-text">六、迪米特原则(最少知道原则)</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <p>设计模式是前人通过不断实践总结出来的经验。在日常编码也时有用到，更多的体现是在各大框架设计里面。之前自己学习过，但没有通过自己总结出来，接下来，我将系统的总结设计模式，加深自己对设计模式的理解<br><a id="more"></a></p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="一、创建型模式："><a href="#一、创建型模式：" class="headerlink" title="一、创建型模式："></a>一、创建型模式：</h3><pre><code>1.工厂模式
+2.抽象工厂模式
+3.单例模式
+4.建造者模式
+5.原型模式
+</code></pre><h3 id="二、结构型模式"><a href="#二、结构型模式" class="headerlink" title="二、结构型模式"></a>二、结构型模式</h3><pre><code>1.适配器模式
+2.桥接模式
+3.过滤器模式
+4.代理模式
+5.组合模式
+6.装饰器模式
+7.外观模式
+8.享元模式
+</code></pre><h3 id="三、行为型模式"><a href="#三、行为型模式" class="headerlink" title="三、行为型模式"></a>三、行为型模式</h3><pre><code>1.责任链模式
+2.命令模式
+3.解释器模式
+4.迭代器模式
+5.备忘录模式
+6.中介者模式
+7.观察者模式
+8.状态模式
+9.空对象模式
+10.策略模式
+11.模板方法模式
+12.访问者模式
+</code></pre><h2 id="六大原则"><a href="#六大原则" class="headerlink" title="六大原则"></a>六大原则</h2><h3 id="一、单一职责原则"><a href="#一、单一职责原则" class="headerlink" title="一、单一职责原则"></a>一、单一职责原则</h3><p><strong>每个类的职责应该是单一的，不能让一个类负责做个业务。</strong><br>比如说:一个类负责职责A和职责B，当职责A的需求变更时，需要修改职责A的代码，可能会导致职责B的代码出现问题为了避免出现这样的问题，所以要一个类对应一个职责</p>
+<h3 id="二、开闭原则"><a href="#二、开闭原则" class="headerlink" title="二、开闭原则"></a>二、开闭原则</h3><p><strong>对扩展开放，对修改关闭</strong><br>比如说:一个创建水果的类，本来可以创建香蕉、西瓜两个水果。如果这个类要新加创建芒果的方法，就得对这个类进行修改，如果再加其他水果，又得对该类进行方法的新增。所以可以对香蕉、西瓜等水果进行抽象，创建水果的类只提供创建方法，要新加芒果时，只需要扩展一个芒果类即可，不需要对创建水果类进行修改。开闭原则的关键就在于<strong>抽象</strong>二字</p>
+<h3 id="三、里氏代换原则"><a href="#三、里氏代换原则" class="headerlink" title="三、里氏代换原则"></a>三、里氏代换原则</h3><p><strong>任何基类出现的地方，其子类也可以出现，替代其使用不会是出现错误</strong><br>换种方式说就是，我喜欢狗，所以我一定喜欢动物；但我喜欢动物，我不一定喜欢狗。里氏代换原则其实是对开闭原则的补充也就是抽象的具体实现，而实现需要注意的也就是抽象时需要注意的情况:</p>
+<pre><code>1. 子类必须实现父类的抽象方法，不能实现非抽象方法
+2. 子类可以增加自己的方法
+</code></pre><h3 id="四、依赖倒置原则"><a href="#四、依赖倒置原则" class="headerlink" title="四、依赖倒置原则"></a>四、依赖倒置原则</h3><p><strong>抽象不应该依赖于细节，细节应当依赖于抽象。换言之，要针对接口编程，而不是针对实现编程</strong></p>
+<h3 id="五、接口隔离原则"><a href="#五、接口隔离原则" class="headerlink" title="五、接口隔离原则"></a>五、接口隔离原则</h3><p><strong>使用多个专门的接口，而不使用单一的总接口</strong><br>比方说鸟和壁虎都属于动物，都实现动物接口，按理动物接口要包括飞行方法、爬行方法，但鸟类实现接口之后具有爬行方法、显然不合适。所以要拆分成，飞行动物接口和爬行动物接口。</p>
+<h3 id="六、迪米特原则-最少知道原则"><a href="#六、迪米特原则-最少知道原则" class="headerlink" title="六、迪米特原则(最少知道原则)"></a>六、迪米特原则(最少知道原则)</h3><p><strong>一个软件实体应当尽可能少地与其他实体发生相互作用</strong><br> 迪米特法则要求我们在设计系统时，应该尽量减少对象之间的交互，如果两个对象之间不必彼此直接通信，那么这两个对象就不应当发生任何直接的相互作用，如果其中的一个对象需要调用另一个对象的某一个方法的话，可以通过第三者转发这个调用。简言之，就是通过引入一个合理的第三者来降低现有对象之间的耦合度。</p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+    }
+    .donate_bar a.btn_donate{
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br>
+    --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+<span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+<span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function () {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SpringBoot/">SpringBoot</a>
+        <a class="tag-link" href="/tags/设计模式/">设计模式</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2017/03/10/designpattern/DesignPattern/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/03/10/designpattern/DesignPattern/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/03/11/designpattern/Factory/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    工厂模式（Factory Method）
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/03/10/effectivejava/EffectiveJava/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">《Effective Java》阅读记录</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
