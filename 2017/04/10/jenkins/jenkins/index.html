@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 持续集成 | 冰梨</title>
+    <title>jenkins 持续集成 | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/tags/持续集成/index.html">
+    <meta name="description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
+<meta name="keywords" content="jenkins,持续集成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jenkins 持续集成">
+<meta property="og:url" content="http://www.icepear.cn/2017/04/10/jenkins/jenkins/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/jenkins/jenkins.png">
+<meta property="og:updated_time" content="2017-10-17T09:59:22.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="jenkins 持续集成">
+<meta name="twitter:description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/jenkins/jenkins.png">
     
 
     
@@ -180,25 +187,29 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#持续集成</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-jenkins/jenkins" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/jenkins/jenkins.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/04/10/jenkins/jenkins/">jenkins 持续集成</a>
+        <h1 class="article-title" itemprop="name">
+            jenkins 持续集成
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/04/10/jenkins/jenkins/">
@@ -207,23 +218,219 @@
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/jenkins/">jenkins</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Jenkins"><span class="toc-number">1.</span> <span class="toc-text">Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Jenkins"><span class="toc-number">1.1.</span> <span class="toc-text">What is Jenkins?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建"><span class="toc-number">1.2.</span> <span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">1.3.</span> <span class="toc-text">插件</span></a></li></ol></li></ol>
+                </div>
+            
+            <p>持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍<br><a id="more"></a></p>
+<h1 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h1><h2 id="What-is-Jenkins"><a href="#What-is-Jenkins" class="headerlink" title="What is Jenkins?"></a>What is Jenkins?</h2><ol>
+<li><strong>Jenkins is a self-contained, open source automation server which can be used to automate all sorts of tasks related to building, testing, and deploying software.</strong></li>
+<li><strong>Jenkins can be installed through native system packages, Docker, or even run standalone by any machine with a Java Runtime Environment (JRE) installed.</strong></li>
+</ol>
+<p>官方给出了两点定义,大概的意思就是:</p>
+<ol>
+<li>jenkins 是一个独立的开源自动化服务器，可用于自动化与构建，测试和部署软件相关的各种任务。</li>
+<li>Jenkins可以通过本机系统软件包安装，Docker，甚至可以通过安装Java Runtime Environment（JRE）的任何机器独立运行。</li>
+</ol>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>现在主要的这类软件，我都习惯使用docker进行部署，当然官方也说了可以直接使用jre，根据个人习惯选择。<br>介绍三种方法:</p>
+<ol>
+<li><p>docker方式</p>
+<ul>
+<li><p>下载镜像</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull jenkins</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -p 8080:8080 -p 50000:50000 jenkins</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果想挂载数据到宿主机，就先创建一个目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>jre运行<br><a href="https://jenkins.io/download/" target="_blank" rel="external">下载</a>,然后运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar jenkins.war</div></pre></td></tr></table></figure>
+</li>
+<li><p>官方方式<br> Ubuntu</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -</div><div class="line">sudo sh -c <span class="string">'echo deb http://pkg.jenkins.io/debian-stable binary/ &gt; /etc/apt/sources.list.d/jenkins.list'</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install jenkins</div></pre></td></tr></table></figure>
+<p> centos</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</div><div class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</div><div class="line">yum install jenkins</div></pre></td></tr></table></figure>
+<p> 你也可以在<em>/etc/sysconfig/jenkins</em>中修改参数</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JENKINS_USER="root"</div><div class="line">JENKINS_PORT="8008"</div></pre></td></tr></table></figure>
+<p> 设置完成之后，运行</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service jenkins start</div></pre></td></tr></table></figure>
+<p> 如果能成功启动,那么恭喜你。像我就没这么轻松了，一脚下去几个坑，md，只能默默地填上。<br> <strong>坑1:</strong> 本以为可以成功,查看<em>/etc/log/jenkins/jenkins.log</em>发现端口占用导致错误,我X,docker那边没停占用了8008<br> 顺带记录一下查看端口占用命令，老是忘<br> 查看端口占用：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">     netstat -anp | grep 8008 </div><div class="line">或者 lsof -i:8008</div></pre></td></tr></table></figure>
+<p> 查看应用占用：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -aux | grep docker</div></pre></td></tr></table></figure>
+<p> <strong>坑2:</strong> 端口解决了，结果尼玛还是失败,发现启动脚本里面的java路径没设置</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/init.d/jenkins</div></pre></td></tr></table></figure>
+<p> 打开脚本发现</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">candidates=<span class="string">"</span></div><div class="line"><span class="string">/etc/alternatives/java</span></div><div class="line"><span class="string">/usr/lib/jvm/java-1.8.0/bin/java</span></div><div class="line"><span class="string">/usr/lib/jvm/jre-1.8.0/bin/java</span></div><div class="line"><span class="string">/usr/lib/jvm/java-1.7.0/bin/java</span></div><div class="line"><span class="string">/usr/lib/jvm/jre-1.7.0/bin/java</span></div><div class="line"><span class="string">/usr/bin/java</span></div><div class="line"><span class="string">"</span></div></pre></td></tr></table></figure>
+<p> 尼玛，还要配java路径,加上之后是可以启动了。<br> <strong>坑3</strong> 你以为启动了就ok了,简直是葫芦娃救爷爷，坑一个一个来。发现访问不了，于是乎怀疑是防火墙问题<br> 打开端口后，终于正常了，唉,不得不说docker还是强大<br> 上图<br> <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/jenkins/jenkins-start.png" alt=""></p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2></li>
+</ol>
+<p>docker run -p 8008:8080 -p 50000:50000 –name jenkins \<br>    -v /home/wulm/jenkins:/var/jenkins_home \<br>    -v /data/jdk1.8.0_131:/usr/java/jdk1.8.0_131 \<br>    -v /var/maven/apache-maven-3.5.0:/var/maven/apache-maven-3.5.0 \<br>    -v /usr/bin/docker:/usr/bin/docker \<br>    -v /var/run/docker.sock:/var/run/docker.sock \<br>-d jenkins</p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+    }
+    .donate_bar a.btn_donate{
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br>
+    --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+<span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+<span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function () {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/jenkins/">jenkins</a>, <a class="tag-link" href="/tags/持续集成/">持续集成</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2017/04/10/jenkins/jenkins/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/04/10/jenkins/jenkins/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/03/21/other/firewalld/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">linux 防火墙配置</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
