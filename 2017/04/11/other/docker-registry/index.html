@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: SpringBoot | 冰梨</title>
+    <title>docker 私服库(V2) | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/categories/SpringBoot/index.html">
+    <meta name="description" content="搭建docker 私服库是持续集成的一部分，当然你可以使用公共库，但我更倾向于私服库，对团队内部来讲还是相当有益的，接下来详细记录如何搭建以及注意环节">
+<meta name="keywords" content="持续集成,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 私服库(V2)">
+<meta property="og:url" content="http://www.icepear.cn/2017/04/11/other/docker-registry/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="搭建docker 私服库是持续集成的一部分，当然你可以使用公共库，但我更倾向于私服库，对团队内部来讲还是相当有益的，接下来详细记录如何搭建以及注意环节">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/docker/registry/registry.png">
+<meta property="og:updated_time" content="2017-10-20T06:37:38.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="docker 私服库(V2)">
+<meta name="twitter:description" content="搭建docker 私服库是持续集成的一部分，当然你可以使用公共库，但我更倾向于私服库，对团队内部来讲还是相当有益的，接下来详细记录如何搭建以及注意环节">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/docker/registry/registry.png">
     
 
     
@@ -180,50 +187,248 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">SpringBoot</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-other/docker-registry" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/docker/registry/registry.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/12/09/springboot/SpringBoot1/">SpringBoot学习-基本使用</a>
+        <h1 class="article-title" itemprop="name">
+            docker 私服库(V2)
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/09/springboot/SpringBoot1/">
-            <time datetime="2016-12-09T11:30:02.000Z" itemprop="datePublished">2016-12-09</time>
+        <a href="/2017/04/11/other/docker-registry/">
+            <time datetime="2017-04-11T10:30:02.000Z" itemprop="datePublished">2017-04-11</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        <a class="article-category-link" href="/categories/docker/">docker</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-registry-搭建"><span class="toc-number">1.</span> <span class="toc-text">docker registry 搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建"><span class="toc-number">1.2.</span> <span class="toc-text">搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-number">1.2.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单运行"><span class="toc-number">1.2.2.</span> <span class="toc-text">简单运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全运行"><span class="toc-number">1.2.3.</span> <span class="toc-text">安全运行</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <p>搭建docker 私服库是持续集成的一部分，当然你可以使用公共库，但我更倾向于私服库，对团队内部来讲还是相当有益的，接下来详细记录如何搭建以及注意环节<br><a id="more"></a></p>
+<h1 id="docker-registry-搭建"><a href="#docker-registry-搭建" class="headerlink" title="docker registry 搭建"></a>docker registry 搭建</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>registry是一种开源的,无状态，高度可扩展的服务器端应用程序，可存储和分发Docker映像。其实这些都是屁话，哈哈，只要了解私服库字面意思就知道是干嘛的了。<br>V1就直接pass了，官方都抛弃了，直接用的是V2</p>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><p><strong>前提：先安装了docker，而且版本1.6以上</strong></p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>下载比较简单，通过docker下载镜像就行了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull registry:2</div></pre></td></tr></table></figure></p>
+<h3 id="简单运行"><a href="#简单运行" class="headerlink" title="简单运行"></a>简单运行</h3><p>下载之后，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 5000:5000 --restart=always --name registry registry:2</div></pre></td></tr></table></figure></p>
+<p>这样一个私服库就跑起来了，但事实上这样基本上是没卵用的。官方文档说了<br><em>A production-ready registry must be protected by TLS and should ideally use an access-control mechanism</em><br>生产必须被TLS保护，合理的使用访问控制<br>所以说了这么多其实没卵用，官方文档这么带我的，我也就这么写咯，所以还是看下面吧</p>
+<h3 id="安全运行"><a href="#安全运行" class="headerlink" title="安全运行"></a>安全运行</h3><ol>
+<li>做TLS就要签名证书，所以第一步就是创建证书用openssl<br>创建文件夹用于存放证书,也为了方便后续挂载至registry容器,官方也有<img src="https://docs.docker.com/registry/insecure/#use-self-signed-certificates" alt="说明"><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir -p certs</div><div class="line">$ openssl req \</div><div class="line">  -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \</div><div class="line">  -x509 -days 365 -out certs/domain.crt</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意一定要输入CN（common name）之后的要用到(例如：myregistrydomain.com)<br>创建之后，文件夹下就有两个文件：domain.crt domain.key</p>
+<ol>
+<li>将证书添加至系统信任<br>使用身份验证时，Docker的某些版本还要求在操作系统级别信任证书。<br>centos:<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cat certs/domain.crt » /etc/pki/tls/certs/ca-bundle.crt</div><div class="line">$ update-ca-trust</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>ubuntu:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cp certs/domain.crt /usr/<span class="built_in">local</span>/share/ca-certificates/myregistrydomain.com.crt</div><div class="line">$ update-ca-certificates</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>生成用户和密码<br>光有TLS是不够的，还必须做到访问控制。实现访问限制的最简单方法是通过Native basic auth（这与其他Web服务器的基本身份验证机制非常相似）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir auth</div><div class="line">$ docker run \</div><div class="line">  --entrypoint htpasswd \</div><div class="line">  registry:2 -Bbn testuser testpassword &gt; auth/htpasswd</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动registry容器<br>万事具备，只欠东风。现在只需要把容器启动起来，该挂载的挂载，改配的环境变量配上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">docker run -d \</div><div class="line">  -p 5000:5000 \</div><div class="line">  --restart=always \</div><div class="line">  --name registry \</div><div class="line">  -v /home/docker-registry:/var/lib/registry \</div><div class="line">  -v /home/wulm/auth:/auth \</div><div class="line">  -e <span class="string">"REGISTRY_AUTH=htpasswd"</span> \</div><div class="line">  -e <span class="string">"REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm"</span> \</div><div class="line">  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \</div><div class="line">  -v /home/wulm/certs:/certs \</div><div class="line">  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \</div><div class="line">  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \</div><div class="line">  registry:2</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>至此registry算是搭建成功了，但是真的成没成功还得测试，最简单的是直接访问<img src="https://myregistrydomain.com/v2/_catalog" alt="https://myregistrydomain.com/v2/_catalog"><br>前提是这个域名写到了你的hosts文件</p>
+<ol>
+<li><p>客户端docker测试<br> 在另外一台主机上测试私服库是否可用，才能真正测试出正确性。</p>
+<ul>
+<li><p>首先将myregistrydomain.com域名（也就是你配置的域名）对应的IP一起写到你的hosts文件中，以便系统能够根据域名找到私服</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/hosts</div></pre></td></tr></table></figure>
+<p>在文件末尾添加一行</p>
+</li>
+<li><p>然后不管以什么方法，将私服库上的证书搞到测试机上来,并且写到docker认证的目录下（/etc/docker/certs.d/）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p /etc/docker/certs.d/myregistrydomain.com:5000 建一个文件夹</div><div class="line">cp /certs/domain.crt /etc/docker/certs.d/myregistrydomain.com:5000 然后将证书放到这个目录下（假设证书已经从私服库上拷下来放到/certs/domain.crt中）</div></pre></td></tr></table></figure>
+<p>建议是重启一下docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart docker</div></pre></td></tr></table></figure>
+<p>这会假如你测试机上跑了其他容器，那这些肯定都是挂了的，一个一个起有太麻烦，所以可以用下面的命令批量重启一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start $(docker ps -a | awk <span class="string">'&#123; print $1&#125;'</span> | tail -n +2)</div></pre></td></tr></table></figure>
+</li>
+<li><p>就可以测试登录了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker login myregistrydomain.com:5000</div></pre></td></tr></table></figure>
+<p>不出意外输入账号密码，会提示登录成功。<br><strong>good luck</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+    }
+    .donate_bar a.btn_donate{
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br>
+    --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+<span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+<span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function () {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SpringBoot/">SpringBoot</a>
+        <a class="tag-link" href="/tags/docker/">docker</a>, <a class="tag-link" href="/tags/持续集成/">持续集成</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2017/04/11/other/docker-registry/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/04/11/other/docker-registry/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/04/10/jenkins/jenkins/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">jenkins 持续集成</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
