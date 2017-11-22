@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: SpringBoot | 冰梨</title>
+    <title>go圣经阅读 | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/categories/SpringBoot/index.html">
+    <meta name="description" content="学习一门新语言时，会有一种自然的倾向, 按照自己熟悉的语言的套路写新语言程序。学习Go语言的过程中，请警惕这种想法，尽量别这么做。我们会演示怎么写好Go语言程序，所以阅读了称之为《go圣经》这本书,并且利用思维导图的方式记录了重点。">
+<meta name="keywords" content="go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go圣经阅读">
+<meta property="og:url" content="http://www.icepear.cn/2017/08/09/other/gopl/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="学习一门新语言时，会有一种自然的倾向, 按照自己熟悉的语言的套路写新语言程序。学习Go语言的过程中，请警惕这种想法，尽量别这么做。我们会演示怎么写好Go语言程序，所以阅读了称之为《go圣经》这本书,并且利用思维导图的方式记录了重点。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/go/banner.jpg">
+<meta property="og:updated_time" content="2017-11-22T08:18:16.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="go圣经阅读">
+<meta name="twitter:description" content="学习一门新语言时，会有一种自然的倾向, 按照自己熟悉的语言的套路写新语言程序。学习Go语言的过程中，请警惕这种想法，尽量别这么做。我们会演示怎么写好Go语言程序，所以阅读了称之为《go圣经》这本书,并且利用思维导图的方式记录了重点。">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/go/banner.jpg">
     
 
     
@@ -180,50 +187,203 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">SpringBoot</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-other/gopl" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/go/banner.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/12/09/springboot/SpringBoot1/">SpringBoot学习-基本使用</a>
+        <h1 class="article-title" itemprop="name">
+            go圣经阅读
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/09/springboot/SpringBoot1/">
-            <time datetime="2016-12-09T11:30:02.000Z" itemprop="datePublished">2016-12-09</time>
+        <a href="/2017/08/09/other/gopl/">
+            <time datetime="2017-08-09T10:30:02.000Z" itemprop="datePublished">2017-08-09</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        <a class="article-category-link" href="/categories/go/">go</a>
     </div>
 
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
                     
+                </div>
+            
+            <p>学习一门新语言时，会有一种自然的倾向, 按照自己熟悉的语言的套路写新语言程序。学习Go语言的过程中，请警惕这种想法，尽量别这么做。我们会演示怎么写好Go语言程序，所以阅读了称之为《go圣经》这本书,并且利用思维导图的方式记录了重点。<br><a id="more"></a><br><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/go/go.png" alt=""></p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+    }
+    .donate_bar a.btn_donate{
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br>
+    --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+<span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br>
+    ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://will-min.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+<span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function () {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SpringBoot/">SpringBoot</a>
+        <a class="tag-link" href="/tags/go/">go</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2017/08/09/other/gopl/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/08/09/other/gopl/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/04/10/jenkins/jenkins/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">jenkins 持续集成</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
