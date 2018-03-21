@@ -291,10 +291,12 @@
     .center {
         text-align: center;
     }
+    
     .hidden {
         display: none;
     }
-    .donate_bar a.btn_donate{
+    
+    .donate_bar a.btn_donate {
         display: inline-block;
         width: 82px;
         height: 82px;
@@ -306,26 +308,31 @@
         -ms-transition: background 0s;
         transition: background 0s;
     }
-
-    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
     .donate_bar .donate_txt {
         display: block;
         color: #9d9d9d;
         font: 14px/2 "Microsoft Yahei";
     }
-    .bold{ font-weight: bold; }
+    
+    .bold {
+        font-weight: bold;
+    }
 </style>
 <!-- /css -->
 
 <!-- btn_donate & tips -->
 <div id="donate_board" class="donate_bar center">
-    <br>
-    --------------------------------------
+    <br> --------------------------------------
     <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
     --------------------------------------
     <br>
     <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
-<span class="donate_txt">
+    <span class="donate_txt">
   如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
 </span>
 
@@ -336,28 +343,26 @@
 <!-- donate guide -->
 
 <div id="donate_guide" class="donate_bar center hidden">
-    <br>
-    ------------------------------------------------------------------------------------------------------------------------------
+    <br> ------------------------------------------------------------------------------------------------------------------------------
     <br>
     <span>支付宝打赏二维码</span>
     <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
-        <a href="https://will-min.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
             <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
         </a>
     </a>
 
     &nbsp;&nbsp;
-    <br>
-    ------------------------------------------------------------------------------------------------------------------------------
+    <br> ------------------------------------------------------------------------------------------------------------------------------
     <br>
     <span>微信打赏二维码</span>
     <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
-        <a href="https://will-min.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
             <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
         </a>
     </a>
 
-<span class="donate_txt">
+    <span class="donate_txt">
   如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
 </span>
 
@@ -371,12 +376,12 @@
         $('#donate_guide').removeClass('hidden');
     }
 
-    function donate_on_web(){
+    function donate_on_web() {
         $('#donate').submit();
     }
 
     var original_window_onload = window.onload;
-    window.onload = function () {
+    window.onload = function() {
         if (original_window_onload) {
             original_window_onload();
         }
