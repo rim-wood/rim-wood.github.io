@@ -14,7 +14,7 @@
 <meta property="og:description" content="线程是java面试问题中的热门话题之一，下面总结了一些Java多线程以及并发访问问题和答案，毕竟多线程和并发性都是并存的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/multithread/interview/thread.jpg">
-<meta property="og:updated_time" content="2018-03-21T09:26:51.722Z">
+<meta property="og:updated_time" content="2018-03-26T09:08:11.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程高并发面试题（Multithreading &amp; Concurrency）">
 <meta name="twitter:description" content="线程是java面试问题中的热门话题之一，下面总结了一些Java多线程以及并发访问问题和答案，毕竟多线程和并发性都是并存的。">
@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                9
+                10
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                13
+                14
                 <span>标签</span>
             </div>
         </div>
@@ -234,7 +234,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多线程和并发"><span class="toc-number">1.</span> <span class="toc-text">多线程和并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-number">1.1.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Process和Thread之间的区别"><span class="toc-number">1.1.1.</span> <span class="toc-text">Process和Thread之间的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程编程的优点"><span class="toc-number">1.1.2.</span> <span class="toc-text">多线程编程的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户线程和守护线程有什么不同"><span class="toc-number">1.1.3.</span> <span class="toc-text">用户线程和守护线程有什么不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在java中怎么创建一个线程"><span class="toc-number">1.1.4.</span> <span class="toc-text">在java中怎么创建一个线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期有哪些"><span class="toc-number">1.1.5.</span> <span class="toc-text">线程的生命周期有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎样理解线程的优先级"><span class="toc-number">1.1.6.</span> <span class="toc-text">怎样理解线程的优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是线程调度和时间分片"><span class="toc-number">1.1.7.</span> <span class="toc-text">什么是线程调度和时间分片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何确保main（）是Java程序中最后完成的线程"><span class="toc-number">1.1.8.</span> <span class="toc-text">如何确保main（）是Java程序中最后完成的线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程间通信方式"><span class="toc-number">1.1.9.</span> <span class="toc-text">线程间通信方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎么确保线程安全"><span class="toc-number">1.1.10.</span> <span class="toc-text">怎么确保线程安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-关键字"><span class="toc-number">1.1.11.</span> <span class="toc-text">volatile 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步块和同步方法那个更好"><span class="toc-number">1.1.12.</span> <span class="toc-text">同步块和同步方法那个更好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建守护线程的方法"><span class="toc-number">1.1.13.</span> <span class="toc-text">创建守护线程的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal是什么"><span class="toc-number">1.1.14.</span> <span class="toc-text">ThreadLocal是什么</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多线程和并发"><span class="toc-number">1.</span> <span class="toc-text">多线程和并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-number">1.1.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Process和Thread之间的区别"><span class="toc-number">1.1.1.</span> <span class="toc-text">Process和Thread之间的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程编程的优点"><span class="toc-number">1.1.2.</span> <span class="toc-text">多线程编程的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户线程和守护线程有什么不同"><span class="toc-number">1.1.3.</span> <span class="toc-text">用户线程和守护线程有什么不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在java中怎么创建一个线程"><span class="toc-number">1.1.4.</span> <span class="toc-text">在java中怎么创建一个线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期有哪些"><span class="toc-number">1.1.5.</span> <span class="toc-text">线程的生命周期有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎样理解线程的优先级"><span class="toc-number">1.1.6.</span> <span class="toc-text">怎样理解线程的优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是线程调度和时间分片"><span class="toc-number">1.1.7.</span> <span class="toc-text">什么是线程调度和时间分片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何确保main（）是Java程序中最后完成的线程"><span class="toc-number">1.1.8.</span> <span class="toc-text">如何确保main（）是Java程序中最后完成的线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程间通信方式"><span class="toc-number">1.1.9.</span> <span class="toc-text">线程间通信方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎么确保线程安全"><span class="toc-number">1.1.10.</span> <span class="toc-text">怎么确保线程安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-关键字"><span class="toc-number">1.1.11.</span> <span class="toc-text">volatile 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步块和同步方法那个更好"><span class="toc-number">1.1.12.</span> <span class="toc-text">同步块和同步方法那个更好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建守护线程的方法"><span class="toc-number">1.1.13.</span> <span class="toc-text">创建守护线程的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal是什么"><span class="toc-number">1.1.14.</span> <span class="toc-text">ThreadLocal是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是死锁，怎么分析和避免死锁"><span class="toc-number">1.1.15.</span> <span class="toc-text">什么是死锁，怎么分析和避免死锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是线程池，如何创建线程池"><span class="toc-number">1.1.16.</span> <span class="toc-text">什么是线程池，如何创建线程池</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发"><span class="toc-number">1.2.</span> <span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是原子操作，java并发api中的原子类是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是原子操作，java并发api中的原子类是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？"><span class="toc-number">1.2.2.</span> <span class="toc-text">java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谈谈Excutor"><span class="toc-number">1.2.3.</span> <span class="toc-text">谈谈Excutor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谈谈Callable和Future"><span class="toc-number">1.2.5.</span> <span class="toc-text">谈谈Callable和Future</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谈谈FutureTask"><span class="toc-number">1.2.6.</span> <span class="toc-text">谈谈FutureTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谈谈Concurrent-Collection类"><span class="toc-number">1.2.7.</span> <span class="toc-text">谈谈Concurrent Collection类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讲讲Executors类"><span class="toc-number">1.2.8.</span> <span class="toc-text">讲讲Executors类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java8中并发改进了哪些？"><span class="toc-number">1.2.9.</span> <span class="toc-text">java8中并发改进了哪些？</span></a></li></ol></li></ol></li></ol>
                 </div>
             
             <p>线程是java面试问题中的热门话题之一，下面总结了一些Java多线程以及并发访问问题和答案，毕竟多线程和并发性都是并存的。<br><a id="more"></a></p>
@@ -270,7 +270,52 @@
 <h3 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h3><p>当使用volatile 关键字定义变量时，所有的线程将从主内存中读取而不是从线程的本地缓存读取，这就能确保变量在多线程的情况下也是同步的</p>
 <h3 id="同步块和同步方法那个更好"><a href="#同步块和同步方法那个更好" class="headerlink" title="同步块和同步方法那个更好"></a>同步块和同步方法那个更好</h3><p>更倾向于同步块的写法，因为同步块可以指定minitor对象锁定，可控制粒度更小。而同步方法会锁定整个对象，并且如果类中有多个同步块，即使它们不相关，也会阻止它们执行并将它们置于等待状态</p>
 <h3 id="创建守护线程的方法"><a href="#创建守护线程的方法" class="headerlink" title="创建守护线程的方法"></a>创建守护线程的方法</h3><p>通常创建守护线程用于对系统不重要的功能，例如记录线程或监事线程来捕获系统资源细节和状态，最好避免IO操作的守护线程<br>可以用Thread.setDaemon(true) 创建</p>
-<h3 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h3>
+<h3 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h3><p>ThreadLocal用于创建线程的局部变量，对象的所有线程共享它的变量，所以这个变量不是线程安全的，可以使用线程同步来达到线程的目的，但是如果想避免同步，就可以使用ThreadLocal变量，每个线程都有自己的ThreadLocal变量互不影响，可以使用get/set方法来设置和获取值</p>
+<h3 id="什么是死锁，怎么分析和避免死锁"><a href="#什么是死锁，怎么分析和避免死锁" class="headerlink" title="什么是死锁，怎么分析和避免死锁"></a>什么是死锁，怎么分析和避免死锁</h3><p>死锁是指两个或以上的线程永远处于阻塞状态。<br>分析死锁，可以通过查看应用程序的java Thread dump，可以通过jstack工具查看状态为阻塞的线程，然后查看它正在等待的锁定的资源，每个资源都有一个唯一的ID，我们可以使用它找到哪个线程已经在对象上持有锁<br>有以下准则可以避免死锁</p>
+<ol>
+<li>避免嵌套锁定，这是大部分死锁的情况，也就是说尽量不要在锁定资源a的情况下，又去锁定资源b</li>
+<li>只锁定需要锁定的东西，你应该只获取必须处理的资源的锁，如果我们只对某一个字段感兴趣，那么我们应该只锁定该特定字段而不是完整对象</li>
+<li>避免无限等待，如果线程a必须等待线程b完成，尽量不要用sleep去控制，而是使用threa.join串行执行</li>
+</ol>
+<h3 id="什么是线程池，如何创建线程池"><a href="#什么是线程池，如何创建线程池" class="headerlink" title="什么是线程池，如何创建线程池"></a>什么是线程池，如何创建线程池</h3><p>根据系统自身的环境情况，有效的限制执行线程的数量，使得运行效果达到最佳。线程主要是通过控制执行的线程的数量，超出数量的线程排队等候，等待有任务执行完毕，再从队列最前面取出任务执行。<br>创建线程池的方式有多种</p>
+<ol>
+<li>java.util.concurrent.Executors 提供了线程池的静态实现方法,但一般不推荐这种写法</li>
+</ol>
+<ul>
+<li>newFixedThreadPool();创建的线程池corePoolSize和maximumPoolSize值是相等的，它使用的LinkedBlockingQueue；</li>
+<li>newSingleThreadExecutor();将corePoolSize和maximumPoolSize都设置为1，也使用的LinkedBlockingQueue；</li>
+<li>newCachedThreadPool();将corePoolSize设置为0，将maximumPoolSize设置为Integer.MAX_VALUE，使用的SynchronousQueue，也就是说来了任务就创建线程运行，当线程空闲超过60秒，就销毁线程。</li>
+<li>newScheduledThreadPool(); 用于创建一个线程池，线程池中得线程能够周期性地执行给定的任务</li>
+</ul>
+<ol>
+<li>ThreadPoolExecutor类提供了更完善的线程池创建构造方法</li>
+<li>ScheduledExecutorService 类提供了定期执行任务线程池</li>
+</ol>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="什么是原子操作，java并发api中的原子类是什么"><a href="#什么是原子操作，java并发api中的原子类是什么" class="headerlink" title="什么是原子操作，java并发api中的原子类是什么"></a>什么是原子操作，java并发api中的原子类是什么</h3><p>原子操作在一个任务单元中执行，不受其他操作的干扰。原子操作在多线程环境中是必需的，以避免数据不一致。<br>比如int++ 就不是一个原子操作，因为再多线程的情况下，某个线程执行了加1，但其他线程可能读的还是旧的值，就会导致错误的结果。<br>为了解决这个问题，我们必须保证count的增量操作是院子的，我们可以使用同步来达到目的，但java1.5以后在java.util.concurrent.atomic提供了int和long的包装类，可以用来实现这个原子操作，没有使用同步，有兴趣的可以深入了解实现</p>
+<h3 id="java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？"><a href="#java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？" class="headerlink" title="java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？"></a>java并发api中的Lock接口是什么？与synchronize相比，它有什么好处？</h3><p>Lock 借口提供了更多广泛的锁定操作比使用synchronized，Lock结构更加灵活，可以有完全不同的属性，并且可以关联多个条件对象<br>Lock有以下优点</p>
+<ol>
+<li>可以让线程更公平</li>
+<li>可以使线程在等待一个锁定对象时响应中断</li>
+<li>可以去尝试获取锁定，但如果无法获取锁定时，则会立即返回或在超时后返回</li>
+<li>可以以不同的顺序获取或释放不同范围内的lock</li>
+</ol>
+<h3 id="谈谈Excutor"><a href="#谈谈Excutor" class="headerlink" title="谈谈Excutor"></a>谈谈Excutor</h3><p>Excutor 是在jdk 1.5 引入的，通过java.util.concurrent.Executor接口<br>Excutor 主要是根据一组执行策略规范调用，调度，执行和控制异步任务<br>创建多个线程并且没有达到最大阈值的限制会导致应用程序耗尽堆内存，所以创建线程池是一个比较好的解决方案，应为有限的线程可以被集中和重用，而Excutor就是为了更好的创建线程池设计的</p>
+<h3 id="什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型"><a href="#什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型" class="headerlink" title="什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型"></a>什么是BlockingQueue，怎么通过BlockingQueue实现一个生产者消费者模型</h3><p>java.util.concurrent.BlockingQueue 是一个阻塞队列，阻塞必然有两种情况，</p>
+<ol>
+<li>当队列满了的时候，进行入列操作会被阻塞</li>
+<li>当队列空的时候，出列操作会被阻塞<br>阻塞队列是线程安全的，所有排队方法本质上都是原子性的，使用内部锁或其他形式的并发控制<br>阻塞队列主要也是用于生产者消费者问题，负责生产的线程不断的制造新对象并插入到阻塞队列中，直到达到这个队列的上限值。队列达到上限值之后生产线程将会被阻塞，直到消费的线程对这个队列进行消费。同理，负责消费的线程不断的从队列中消费对象，直到这个队列为空，当队列为空时，消费线程将会被阻塞，除非队列中有新的对象被插入。</li>
+</ol>
+<h3 id="谈谈Callable和Future"><a href="#谈谈Callable和Future" class="headerlink" title="谈谈Callable和Future"></a>谈谈Callable和Future</h3><p>Callable相当于Runnable的一个扩展，不同于Runnable的是Callable是个泛型参数化接口，并能返回线程的执行结果，而且能在无法正常计算时抛出异常。<br>Callable并不像Runnable那样通过Thread的start方法就能启动实现类的run方法，通常是利用ExecutorService的submit方法去启动call方法自执行任务，而ExecutorService的submit又可以返回一个Future类型的结果，因此Callable通常也与Future一起使用，还有一种方式是使用FutureTask封装Callable再由Thread去启动。<br>所以Callable的好处是异步执行，还能返回结果，结合Future还能判断任务状态，取消任务</p>
+<h3 id="谈谈FutureTask"><a href="#谈谈FutureTask" class="headerlink" title="谈谈FutureTask"></a>谈谈FutureTask</h3><p>FutureTask是Future接口基类的实现类，可以和Executors一起用于异步处理，大多数情况下很少使用FutureTask类，但如果我们想要覆盖Future类的某些方法，并且保留基本实现，它就变得非常方便。我们可以扩展这个类，根据需求覆盖一些方法</p>
+<h3 id="谈谈Concurrent-Collection类"><a href="#谈谈Concurrent-Collection类" class="headerlink" title="谈谈Concurrent Collection类"></a>谈谈Concurrent Collection类</h3><p>通常Collection类是快速失败的，这意味着当一个线程在使用iterator便利时，去修改集合，这个iterator.next()操作将抛出ConcurrentModificationException异常。而Concurrent Collection则不会出现这个问题，因为它就是为多线程设计的<br>主要的类包括 ConcurrentHashMap, CopyOnWriteArrayList 和 CopyOnWriteArraySet</p>
+<h3 id="讲讲Executors类"><a href="#讲讲Executors类" class="headerlink" title="讲讲Executors类"></a>讲讲Executors类</h3><p>Executors 提供了很多静态使用方法，包括Executor, ExecutorService, ScheduledExecutorService, ThreadFactory, 以及 Callable，所以可以使用executors类在java中轻松创建线程池，这也是唯一支持可调用实现执行的类。</p>
+<h3 id="java8中并发改进了哪些？"><a href="#java8中并发改进了哪些？" class="headerlink" title="java8中并发改进了哪些？"></a>java8中并发改进了哪些？</h3><p>重要的改进包括：</p>
+<ol>
+<li>ConcurrentHashMap 的compute(), forEach(), forEachEntry(), forEachKey(), forEachValue(), merge(), reduce() 和 search() 等方法</li>
+<li>加入了CompletableFuture ，使异步编程更优美</li>
+<li>Executors 新增了 newWorkStealingPool 线程池方法</li>
+</ol>
+
 
             
                  <!-- css -->
@@ -544,7 +589,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -553,7 +598,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -562,7 +607,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -571,7 +616,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/持续集成/" style="font-size: 20px;">持续集成</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
+            <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/持续集成/" style="font-size: 20px;">持续集成</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
         </div>
     </div>
 
