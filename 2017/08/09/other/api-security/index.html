@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: SpringBoot | 冰梨</title>
+    <title>接口安全策略 | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/tags/SpringBoot/index.html">
+    <meta name="description" content="在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流">
+<meta name="keywords" content="api,security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口安全策略">
+<meta property="og:url" content="http://www.icepear.cn/2017/08/09/other/api-security/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg">
+<meta property="og:updated_time" content="2018-04-20T06:59:00.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="接口安全策略">
+<meta name="twitter:description" content="在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg">
     
 
     
@@ -180,50 +187,218 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#SpringBoot</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-other/api-security" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/12/09/springboot/SpringBoot1/">SpringBoot学习-基本使用</a>
+        <h1 class="article-title" itemprop="name">
+            接口安全策略
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/09/springboot/SpringBoot1/">
-            <time datetime="2016-12-09T11:30:02.000Z" itemprop="datePublished">2016-12-09</time>
+        <a href="/2017/08/09/other/api-security/">
+            <time datetime="2017-08-09T11:30:02.000Z" itemprop="datePublished">2017-08-09</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        <a class="article-category-link" href="/categories/security/">security</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决办法"><span class="toc-number">2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                </div>
+            
+            <p>在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流<br><a id="more"></a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>为什么要对接口进行安全控制呢，主要是出于这几方面的因素</p>
+<ol>
+<li>防伪装攻击</li>
+<li>防篡改攻击</li>
+<li>防重放攻击</li>
+<li>防数据信息泄露<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1>解决办法有很多，一般常见的做法是token校验然后加上HTTPS。<br>针对这四种情况，假如接口没做任何安全策略是很容易被攻击的。<br>对于第一种防伪装攻击，一般的接口都会带有token认证，可以过滤掉；<br>对于第二种以及第三种，假如别人截获了请求，修改了参数，token机制是没办法做到安全的，所以有效的办法就是加密，加密的办法有很多。<br>下面以图介绍我用的一种<br><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/method.png" alt=""><br>这种方法的步骤是</li>
+<li>将请求参数（一般是json形式）加上约定好的salt进行AES加密，加密出来的是byte，一般用base64进行转码输出，也可做位偏移，得到一个加密字符串；然后加上后端的token，加上时间戳，进行MD5加密得到一个定长的sign字符串</li>
+<li>将sign，toekn，时间戳，参数组成http请求去访问接口<br>这样做的好处就是，针对第二三种攻击，别人拦击你的请求进行篡改，后端根据参数+约定好的salt进行AES加密再加上+token+时间戳进行MD5加密，与sign比对发现两个MD5不一致，就知道，肯定有人篡改了参数，就可以拒绝这样的请求。<br>如果你不想参数直接暴露出来也可以进行AES加密传给后端。这样就可以避免第四种情况</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上都是自己的愚见，如果有更好的设计方法，欢迎交流学习</p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br> --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    <span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web() {
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function() {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SpringBoot/">SpringBoot</a>
+        <a class="tag-link" href="/tags/api/">api</a>, <a class="tag-link" href="/tags/security/">security</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2017/08/09/other/api-security/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/08/09/other/api-security/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/08/09/other/gopl/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">go圣经阅读</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">

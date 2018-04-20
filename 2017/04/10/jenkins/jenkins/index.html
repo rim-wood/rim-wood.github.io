@@ -6,7 +6,7 @@
     <title>jenkins 持续集成 | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
-<meta name="keywords" content="持续集成,jenkins">
+<meta name="keywords" content="jenkins,持续集成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins 持续集成">
 <meta property="og:url" content="http://www.icepear.cn/2017/04/10/jenkins/jenkins/index.html">
@@ -14,7 +14,7 @@
 <meta property="og:description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/jenkins/jenkins.png">
-<meta property="og:updated_time" content="2017-11-14T06:52:08.578Z">
+<meta property="og:updated_time" content="2018-04-20T06:30:34.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins 持续集成">
 <meta name="twitter:description" content="持续集成是DevOps不可或缺的一部分，可以减少大量的部署操作。之所以选择jenkins，其重要原因可能在于其开源免费，接下来进行详细介绍">
@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                10
+                11
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                14
+                16
                 <span>标签</span>
             </div>
         </div>
@@ -287,14 +287,14 @@
 </li>
 <li>需要自己编写dockerfile，安装所需的一些工具</li>
 <li>如果利用jenkins构建docker镜像，就要考虑是使用dockerIndocker还是dockerOutdocker</li>
-<li>如果项目使用docker，可以考虑镜像私服，搭建方法可以<img src="http://www.icepear.cn/2017/04/11/other/docker-registry/" alt="参考"><br>下面详细针对这几点说明。</li>
+<li>如果项目使用docker，可以考虑镜像私服，搭建方法可以<a href="http://www.icepear.cn/2017/04/11/other/docker-registry/">参考</a><br>下面详细针对这几点说明。</li>
 </ol>
 <ul>
 <li>编写dockerfile是必要的，为什么这么说呢，因为避免不了要使用docker，jenkins使用docker有两种方式，一种是在dockerfile中再安装一个docker就是<br>所谓的dockerIndocker，但是很多都不太推荐这种用法，大部分还是选择将宿主机的docker挂载至jenkins容器内运行。那既然能挂载那为什么还要写dockerfile<br>呢，因为你宿主机跟jenkins镜像引入的基础镜像里自带的一些包都有些差异，毕竟镜像不可能像宿主机一样完整。<br>像我用的centos，直接将docker挂进容器里面用，jenkins运行docker命令就会提示包不存在<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker: error <span class="keyword">while</span> loading shared libraries: libltdl.so.7: cannot open shared object file: No such file or directory</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>后面找了一下，其实就是少包<br><img src="https://stackoverflow.com/questions/45121945/jenkins-in-docker-container-run-docker-pipeline" alt="参考链接"><br>所以最终还是编写dockerfile，然后安装缺少的包<br>假如宿主机docker 的权限是root，直接挂进jenkins容器还是会存在权限问题<br>运行docker权限错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Got permission denied <span class="keyword">while</span> trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:</div><div class="line">Get http://%2Fvar%2Frun%2Fdocker.sock/v1.27/containers/json: dial unix /var/run/docker.sock: connect: permission denied</div></pre></td></tr></table></figure></p>
-<p><img src="https://stackoverflow.com/questions/42164653/docker-in-docker-permissions-error" alt="参考链接"><br>办法就是看宿主机docker用户的GID是多少，然后镜像中对应添加一致的，就可以愉快的在jenkins容器中使用docker了，我的dockerfile如下：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> jenkins:latest</div><div class="line"></div><div class="line"><span class="keyword">USER</span> root</div><div class="line"></div><div class="line"><span class="keyword">ARG</span> DOCKER_GID=<span class="number">991</span></div><div class="line"></div><div class="line"><span class="keyword">RUN</span><span class="bash"> groupadd -g <span class="variable">$&#123;DOCKER_GID&#125;</span> docker</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN apt-get update \</span></div><div class="line"><span class="bash">      &amp;&amp; apt-get install -y sudo libltdl-dev expect \</span></div><div class="line"><span class="bash">      &amp;&amp; rm -rf /var/lib/apt/lists/*</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN usermod -aG docker jenkins</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN <span class="built_in">echo</span> <span class="string">"jenkins ALL=NOPASSWD: ALL"</span> &gt;&gt; /etc/sudoers</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">USER jenkins</span></div></pre></td></tr></table></figure></p>
+<p>后面找了一下，其实就是少包<br><a href="https://stackoverflow.com/questions/45121945/jenkins-in-docker-container-run-docker-pipeline" target="_blank" rel="external">参考链接</a><br>所以最终还是编写dockerfile，然后安装缺少的包<br>假如宿主机docker 的权限是root，直接挂进jenkins容器还是会存在权限问题<br>运行docker权限错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Got permission denied <span class="keyword">while</span> trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:</div><div class="line">Get http://%2Fvar%2Frun%2Fdocker.sock/v1.27/containers/json: dial unix /var/run/docker.sock: connect: permission denied</div></pre></td></tr></table></figure></p>
+<p><a href="https://stackoverflow.com/questions/42164653/docker-in-docker-permissions-error" target="_blank" rel="external">参考链接</a><br>办法就是看宿主机docker用户的GID是多少，然后镜像中对应添加一致的，就可以愉快的在jenkins容器中使用docker了，我的dockerfile如下：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> jenkins:latest</div><div class="line"></div><div class="line"><span class="keyword">USER</span> root</div><div class="line"></div><div class="line"><span class="keyword">ARG</span> DOCKER_GID=<span class="number">991</span></div><div class="line"></div><div class="line"><span class="keyword">RUN</span><span class="bash"> groupadd -g <span class="variable">$&#123;DOCKER_GID&#125;</span> docker</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN apt-get update \</span></div><div class="line"><span class="bash">      &amp;&amp; apt-get install -y sudo libltdl-dev expect \</span></div><div class="line"><span class="bash">      &amp;&amp; rm -rf /var/lib/apt/lists/*</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN usermod -aG docker jenkins</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">RUN <span class="built_in">echo</span> <span class="string">"jenkins ALL=NOPASSWD: ALL"</span> &gt;&gt; /etc/sudoers</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">USER jenkins</span></div></pre></td></tr></table></figure></p>
 <p>jenkins自动部署也少不了maven，jdk一系列插件，建议是直接挂在宿主机使用的，运行命令如下：<br>docker run -p 8008:8080 -p 50000:50000 –add-host stpass-15.com:192.168.110.15 –name jenkins \<br>    -v /home/wulm/jenkins:/var/jenkins_home \<br>    -v /home/wulm/jdk1.8.0_131:/usr/java/jdk1.8.0_131 \<br>    -v /var/maven:/var/maven \<br>    -v /root/.ssh:/jenkins/.ssh \<br>    -v /usr/bin/docker:/usr/bin/docker:ro \<br>    -v /var/run/docker.sock:/var/run/docker.sock \<br> -d myjenkins:1.0<br>（注：–add-host 是为了让容器dns能识别到内网私服库的域名）</p>
 
 
@@ -469,6 +469,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/08/09/other/api-security/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg)" alt="接口安全策略" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/security/">security</a></p>
+                            <p class="item-title"><a href="/2017/08/09/other/api-security/" class="title">接口安全策略</a></p>
+                            <p class="item-date"><time datetime="2017-08-09T11:30:02.000Z" itemprop="datePublished">2017-08-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/08/09/other/gopl/" class="thumbnail">
     
     
@@ -542,25 +561,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/03/21/other/firewalld/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/other/firewalld/banner.png)" alt="linux 防火墙配置" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/other/">other</a></p>
-                            <p class="item-title"><a href="/2017/03/21/other/firewalld/" class="title">linux 防火墙配置</a></p>
-                            <p class="item-date"><time datetime="2017-03-21T10:30:02.000Z" itemprop="datePublished">2017-03-21</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -570,7 +570,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/security/">security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -579,7 +579,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -588,7 +588,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -597,7 +597,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/持续集成/" style="font-size: 20px;">持续集成</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
+            <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/持续集成/" style="font-size: 20px;">持续集成</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
         </div>
     </div>
 
