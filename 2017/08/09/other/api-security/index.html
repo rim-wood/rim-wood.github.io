@@ -14,7 +14,7 @@
 <meta property="og:description" content="在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg">
-<meta property="og:updated_time" content="2018-04-20T06:59:00.252Z">
+<meta property="og:updated_time" content="2018-04-20T07:07:22.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口安全策略">
 <meta name="twitter:description" content="在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流">
@@ -243,7 +243,10 @@
 <li>防伪装攻击</li>
 <li>防篡改攻击</li>
 <li>防重放攻击</li>
-<li>防数据信息泄露<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1>解决办法有很多，一般常见的做法是token校验然后加上HTTPS。<br>针对这四种情况，假如接口没做任何安全策略是很容易被攻击的。<br>对于第一种防伪装攻击，一般的接口都会带有token认证，可以过滤掉；<br>对于第二种以及第三种，假如别人截获了请求，修改了参数，token机制是没办法做到安全的，所以有效的办法就是加密，加密的办法有很多。<br>下面以图介绍我用的一种<br><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/method.png" alt=""><br>这种方法的步骤是</li>
+<li>防数据信息泄露</li>
+</ol>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>解决办法有很多，一般常见的做法是token校验然后加上HTTPS。<br>针对这四种情况，假如接口没做任何安全策略是很容易被攻击的。<br>对于第一种防伪装攻击，一般的接口都会带有token认证，可以过滤掉；<br>对于第二种以及第三种，假如别人截获了请求，修改了参数，token机制是没办法做到安全的，所以有效的办法就是加密，加密的办法有很多。<br>下面以图介绍我用的一种<br><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/method.png" alt=""><br>这种方法的步骤是</p>
+<ol>
 <li>将请求参数（一般是json形式）加上约定好的salt进行AES加密，加密出来的是byte，一般用base64进行转码输出，也可做位偏移，得到一个加密字符串；然后加上后端的token，加上时间戳，进行MD5加密得到一个定长的sign字符串</li>
 <li>将sign，toekn，时间戳，参数组成http请求去访问接口<br>这样做的好处就是，针对第二三种攻击，别人拦击你的请求进行篡改，后端根据参数+约定好的salt进行AES加密再加上+token+时间戳进行MD5加密，与sign比对发现两个MD5不一致，就知道，肯定有人篡改了参数，就可以拒绝这样的请求。<br>如果你不想参数直接暴露出来也可以进行AES加密传给后端。这样就可以避免第四种情况</li>
 </ol>
