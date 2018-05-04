@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2017/8 | 冰梨</title>
+    <title>HashMap源码记录 | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/archives/2017/08/index.html">
+    <meta name="description" content="hashmap在java里是出现频率较高的类，不管是工作还是面试，掌握hashmap的原理是很重要的，本文也将从整体到细节介绍hashmap">
+<meta name="keywords" content="HashMap Map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap源码记录">
+<meta property="og:url" content="http://www.icepear.cn/2017/06/15/javautil/hashmap/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="hashmap在java里是出现频率较高的类，不管是工作还是面试，掌握hashmap的原理是很重要的，本文也将从整体到细节介绍hashmap">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/javautil/map/hashmap.png">
+<meta property="og:updated_time" content="2018-05-04T13:42:29.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="HashMap源码记录">
+<meta name="twitter:description" content="hashmap在java里是出现频率较高的类，不管是工作还是面试，掌握hashmap的原理是很重要的，本文也将从整体到细节介绍hashmap">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/javautil/map/hashmap.png">
     
 
     
@@ -180,86 +187,233 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2017</h1>
-            </div>
+            <section id="main"><article id="post-javautil/hashmap" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/javautil/map/hashmap.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/09/other/api-security/">接口安全策略</a>
+        <h1 class="article-title" itemprop="name">
+            HashMap源码记录
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/09/other/api-security/">
-            <time datetime="2017-08-09T11:30:02.000Z" itemprop="datePublished">2017-08-09</time>
+        <a href="/2017/06/15/javautil/hashmap/">
+            <time datetime="2017-06-15T10:30:00.000Z" itemprop="datePublished">2017-06-15</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/security/">security</a>
+        <a class="article-category-link" href="/categories/java-util/">java.util</a>
     </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/api/">api</a>, <a class="tag-link" href="/tags/security/">security</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/09/other/gopl/">go圣经阅读</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/09/other/gopl/">
-            <time datetime="2017-08-09T10:30:02.000Z" itemprop="datePublished">2017-08-09</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/go/">go</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/go/">go</a>
-    </div>
-
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储结构"><span class="toc-number">3.</span> <span class="toc-text">存储结构</span></a></li></ol>
                 </div>
-            </div>
-        </div>
+            
+            <p>hashmap在java里是出现频率较高的类，不管是工作还是面试，掌握hashmap的原理是很重要的，本文也将从整体到细节介绍hashmap<br><a id="more"></a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>hashmap在java里是出现频率较高的类，不管是工作还是面试，掌握hashmap的原理是很重要。随着JDK版本的更新，HashMap底层的实现进行了优化，例如引入红黑树的数据结构和扩容的优化等。本文结合JDK1.7和JDK1.8的区别，深入探讨HashMap的结构实现和功能原理。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>java中Map数据结构定义了一个主要的接口：java.util.Map。主要实现这个接口的类是：HashMap、HashTable、LinkedHashMap、TreeMap。关系如下<br><img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/factory/EasyFactory.png" alt=""><br>下面针对各个实现类的特点做一些说明：</p>
+<p>(1) HashMap：</p>
+<ol>
+<li>访问速度快hashcode直接定位，但遍历顺序却是不确定的。 </li>
+<li>最多只允许一条记录的键为null，允许多条记录的值为null。</li>
+<li>非线程安全，可以用 Collections的synchronizedMap方法使HashMap具有线程安全的能力，或者使用ConcurrentHashMap。</li>
+</ol>
+<p>(2) Hashtable：<strong>没什么卵用</strong>，基本上与HashMap类似、虽然线程安全，但介于HashMap与ConcurrentHashMap之间，不上不下。</p>
+<p>(3) LinkedHashMap：LinkedHashMap是HashMap的一个子类，保存了记录的插入顺序。</p>
+<p>(4) TreeMap：</p>
+<ol>
+<li>它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。</li>
+<li>如果使用排序的映射，建议使用TreeMap。在使用TreeMap时，key必须实现Comparable接口或者在构造TreeMap传入自定义的Comparator，否则会在运行时抛出java.lang.ClassCastException类型的异常。</li>
+</ol>
+<p>本文主要讲HashMap的实现原理，结合1.7和1.8主要从存储结构，常用方法，定位，扩容等方面展开</p>
+<h1 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h1>
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
     
+    .hidden {
+        display: none;
+    }
+    
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br> --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+  如果觉得我的文章对您有用，可以扫一扫，请我喝咖啡！
+</span>
+
+
 </div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    <span class="donate_txt">
+  如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web() {
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function() {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/HashMap-Map/">HashMap Map</a>
+    </div>
+
+</div>
+            
+    
+        <a href="http://www.icepear.cn/2017/06/15/javautil/hashmap/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2017/06/15/javautil/hashmap/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/08/09/other/gopl/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    go圣经阅读
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/06/10/concurrency/interview/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">多线程高并发面试题（Multithreading &amp; Concurrency）</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
