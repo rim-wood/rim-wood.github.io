@@ -14,7 +14,7 @@
 <meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
-<meta property="og:updated_time" content="2018-07-18T04:39:07.994Z">
+<meta property="og:updated_time" content="2018-07-18T10:34:13.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 学习笔记（一）">
 <meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
@@ -234,7 +234,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的拼接、替换、裁剪"><span class="toc-number">1.1.</span> <span class="toc-text">字符串的拼接、替换、裁剪</span></a></li></ol></li></ol>
                 </div>
             
             <p>mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。<br><a id="more"></a></p>
@@ -250,8 +250,73 @@
 <td>CONCAT(s1,s2,…,sn)</td>
 <td>连接 s1，s2 …sn 为一个字符串</td>
 </tr>
+<tr>
+<td>INSERT(str,x,y,instr)</td>
+<td>将字符串str从第x位开始到y位的子串替换成instr</td>
+</tr>
+<tr>
+<td>REPLACE(str,a,b)</td>
+<td>用字符串b替换字符串str中所有出现的字符串a</td>
+</tr>
+<tr>
+<td>SUBSTRING(str,x,y)</td>
+<td>截取字符串str从x位置到y位置的子串</td>
+</tr>
+<tr>
+<td>LOWER(str)</td>
+<td>将字符串str中所有的字符变为小写</td>
+</tr>
+<tr>
+<td>UPPER(str)</td>
+<td>将字符串str中所有的字符变为大写</td>
+</tr>
+<tr>
+<td>LEFT(str,x)</td>
+<td>返回字符串str最左边的x个字符</td>
+</tr>
+<tr>
+<td>RIGHT(str,x)</td>
+<td>返回字符串str最右边的x个字符</td>
+</tr>
+<tr>
+<td>LPAD(str,n,pad)</td>
+<td>用字符串pad对str最左边进行填充，直到长度为n个字符长度</td>
+</tr>
+<tr>
+<td>RPAD(str,n,pad)</td>
+<td>用字符串pad对str最右边进行填充，直到长度为n个字符长度</td>
+</tr>
+<tr>
+<td>LTRIM(str)</td>
+<td>去掉字符串左侧的空格</td>
+</tr>
+<tr>
+<td>RTRIM(str)</td>
+<td>去掉字符串行尾的空格</td>
+</tr>
+<tr>
+<td>TRIM(str)</td>
+<td>去掉字符串行头和行尾的空格</td>
+</tr>
+<tr>
+<td>REPEAT(str,x)</td>
+<td>返回str重复x次的结果</td>
+</tr>
+<tr>
+<td>STRCMP(s1,s2)</td>
+<td>比较字符串s1和s2</td>
+</tr>
 </tbody>
 </table>
+<h2 id="字符串的拼接、替换、裁剪"><a href="#字符串的拼接、替换、裁剪" class="headerlink" title="字符串的拼接、替换、裁剪"></a>字符串的拼接、替换、裁剪</h2><p>这些函数是最常见的，务必牢记</p>
+<ol>
+<li><p><strong>CONCAT(s1,s2,…,sn)</strong> 拼接字符串</p>
+<p> 下面例子将aa，bb，cc三个字符串拼接，另外任何字符串与NULL连接的结果都将是NULL</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'aa'</span>,<span class="string">'bb'</span>,<span class="string">'cc'</span>),<span class="keyword">concat</span>(<span class="string">'aa'</span>,<span class="literal">null</span>)</div><div class="line"></div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line">| <span class="keyword">concat</span>(<span class="string">'aa'</span>,<span class="string">'bb'</span>,<span class="string">'cc'</span>)  | <span class="keyword">concat</span>(<span class="string">'aa'</span>,<span class="literal">null</span>)    |</div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line">| aabbcc                  | <span class="literal">NULL</span>                 |</div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line"><span class="number">1</span> <span class="keyword">row</span> <span class="keyword">in</span> <span class="keyword">set</span>(<span class="number">0.05</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>INSERT、REPLACE</strong> 两个函数都是替换字符串</p>
+</li>
+</ol>
 
 
             
