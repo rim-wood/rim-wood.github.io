@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: docker | 冰梨</title>
+    <title>mysql 学习笔记（一） | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="http://www.icepear.cn/categories/docker/index.html">
+    <meta name="description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql 学习笔记（一）">
+<meta property="og:url" content="http://www.icepear.cn/2018/07/13/mysql/mysql-intorduce/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
+<meta property="og:updated_time" content="2018-07-18T04:26:51.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="mysql 学习笔记（一）">
+<meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
     
 
     
@@ -180,50 +187,217 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">docker</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-mysql/mysql-intorduce" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/04/09/other/docker-registry/">docker 私服库(V2)</a>
+        <h1 class="article-title" itemprop="name">
+            mysql 学习笔记（一）
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/04/09/other/docker-registry/">
-            <time datetime="2017-04-09T10:30:02.000Z" itemprop="datePublished">2017-04-09</time>
+        <a href="/2018/07/13/mysql/mysql-intorduce/">
+            <time datetime="2018-07-13T11:30:02.000Z" itemprop="datePublished">2018-07-13</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/docker/">docker</a>
+        <a class="article-category-link" href="/categories/mysql/">mysql</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a></li></ol>
+                </div>
+            
+            <p>mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。<br><a id="more"></a></p>
+<h1 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h1><pre><code>|         函数         |                                功能                                  |
+|----------------------|----------------------------------------------------------------------|
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+| foo                  |                                                                 foo  |
+</code></pre>
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br> --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+    大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载的时候请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    <span class="donate_txt">
+  大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载的时候请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web() {
+        $('#donate').submit();
+    }
+
+    var original_window_onload = window.onload;
+    window.onload = function() {
+        if (original_window_onload) {
+            original_window_onload();
+        }
+        document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/docker/">docker</a>, <a class="tag-link" href="/tags/持续集成/">持续集成</a>
+        <a class="tag-link" href="/tags/Mysql/">Mysql</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="http://www.icepear.cn/2018/07/13/mysql/mysql-intorduce/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2018/07/13/mysql/mysql-intorduce/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/06/21/other/redis-conf/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">redis 配置解析</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
