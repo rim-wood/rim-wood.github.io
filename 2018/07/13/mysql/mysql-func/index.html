@@ -14,7 +14,7 @@
 <meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
-<meta property="og:updated_time" content="2018-07-19T06:53:13.811Z">
+<meta property="og:updated_time" content="2018-07-19T09:40:40.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 学习笔记（一）">
 <meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
@@ -234,7 +234,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的拼接、替换、裁剪"><span class="toc-number">1.1.</span> <span class="toc-text">字符串的拼接、替换、裁剪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的字符处理，对比"><span class="toc-number">1.2.</span> <span class="toc-text">字符串的字符处理，对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数值函数"><span class="toc-number">2.</span> <span class="toc-text">数值函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日期函数"><span class="toc-number">3.</span> <span class="toc-text">日期函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的拼接、替换、裁剪"><span class="toc-number">1.1.</span> <span class="toc-text">字符串的拼接、替换、裁剪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的字符处理，对比"><span class="toc-number">1.2.</span> <span class="toc-text">字符串的字符处理，对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数值函数"><span class="toc-number">2.</span> <span class="toc-text">数值函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日期函数"><span class="toc-number">3.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他函数"><span class="toc-number">4.</span> <span class="toc-text">其他函数</span></a></li></ol>
                 </div>
             
             <p>mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。<br><a id="more"></a></p>
@@ -329,7 +329,7 @@
  <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select lpad('defg',8,'abcd'),rpad('abcd',8,'defg');</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">| lpad('defg',8,'abcd') | rpad('abcd',8,'defg') |</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">| abcddefg              | abcddefg              |</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>REPEAT、STRCMP</strong>两个相对特殊一点的函数<br> 见例子，strcmp比较的是字符串的ASCII码大小，相等返回0，小返回-1，大返回1</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select repeat('abc',3),strcmp('a','a'),strcmp('aa','ab'),strcmp('b','a');   </div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| repeat('abc',3) | strcmp('a','a') | strcmp('aa','ab') | strcmp('b','a') |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| abcabcabc       |               0 |                -1 |               1 |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select repeat('abc',3),strcmp('a','a'),strcmp('aa','ab'),strcmp('b','a');</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| repeat('abc',3) | strcmp('a','a') | strcmp('aa','ab') | strcmp('b','a') |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| abcabcabc       |               0 |                -1 |               1 |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h1 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h1><table>
@@ -396,7 +396,7 @@
 </thead>
 <tbody>
 <tr>
-<td>CURDATE())</td>
+<td>CURDATE()</td>
 <td>当前日期</td>
 </tr>
 <tr>
@@ -412,7 +412,7 @@
 <td>日期date的UNIX时间戳</td>
 </tr>
 <tr>
-<td>FROM_UNIXTIME</td>
+<td>FROM_UNIXTIME(unixtime)</td>
 <td>UNIX时间戳的日期值</td>
 </tr>
 <tr>
@@ -437,15 +437,43 @@
 </tr>
 <tr>
 <td>DATE_FORMAT(date,fmt)</td>
-<td></td>
+<td>按字符串fmt格式化日期date的值</td>
 </tr>
 <tr>
 <td>DATE_ADD(date,INTERVAL exper type)</td>
-<td>返回参数x的四舍五入的有y位小数的值</td>
+<td>一个日期或时间值加上一个时间间隔的时间值</td>
 </tr>
 <tr>
 <td>DATEDIEF(expr,expr2)</td>
-<td>返回数字x截断为y位小数的结果</td>
+<td>其实时间expr和结束时间expr2之间的天数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DATE_ADD(date,INTERVAL exper type)</strong>重点说明一下，<br>其中 INTERVAL 是间隔类型关键字，expr 是表达式， type是类型，<br>类型表如下<br>    | type | 解释 |<br>    | - | - |<br>    | MICROSECOND | 间隔单位：毫秒 |<br>    | SECOND | 间隔单位：秒 |<br>    | MINUTE | 间隔单位：分钟 |<br>    | HOUR | 间隔单位：小时 |<br>    | DAY | 间隔单位：天 |<br>    | WEEK | 间隔单位：星期 |<br>    | MONTH | 间隔单位：月 |<br>    | QUARTER | 间隔单位：季度 |<br>    | YEAR | 间隔单位：年 |<br>    | SECOND_MICROSECOND | 复合型，间隔单位：秒、毫秒，expr可以用两个值来分别指定秒和毫秒 |<br>    | MINUTE_MICROSECOND | 复合型，间隔单位：分、毫秒 |<br>    | MINUTE_SECOND | 复合型，间隔单位：分、秒 |<br>    | HOUR_MICROSECOND | 复合型，间隔单位：小时、毫秒 |<br>    | HOUR_SECOND | 复合型，间隔单位：小时、秒 |<br>    | HOUR_MINUTE | 复合型，间隔单位：小时分 |<br>    | DAY_MICROSECOND | 复合型，间隔单位：天、毫秒 |<br>    | DAY_SECOND | 复合型，间隔单位：天、秒 |<br>    | DAY_MINUTE | 复合型，间隔单位：天、分 |<br>    | DAY_HOUR | 复合型，间隔单位：天、小时 |<br>    | YEAR_MONTH | 复合型，间隔单位：年、月 |</p>
+<p>例如<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select date_add('2013-01-18', interval '1 2' YEAR_MONTH);</div><div class="line">+<span class="comment">-----------------------------------------------------+</span></div><div class="line">| date_add('2013-01-18', interval '1 2' YEAR_MONTH) |</div><div class="line">+<span class="comment">-----------------------------------------------------+</span></div><div class="line">| 2014-03-18                                          |</div><div class="line">+<span class="comment">-----------------------------------------------------+</span></div><div class="line"></div><div class="line">mysql&gt; select date_add('2013-01-18', interval '1-2' YEAR_MONTH);</div><div class="line">+<span class="comment">----------------------------------------------------+</span></div><div class="line">| date_add('2013-01-18', interval '1-2' YEAR_MONTH) |</div><div class="line">+<span class="comment">----------------------------------------------------+</span></div><div class="line">| 2014-03-18                                         |</div><div class="line">+<span class="comment">----------------------------------------------------+</span></div></pre></td></tr></table></figure></p>
+<h1 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h1><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATEBASE()</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>VERSION()</td>
+<td>版本</td>
+</tr>
+<tr>
+<td>USER()</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>MD5(str)</td>
+<td>str的MD5加密值</td>
 </tr>
 </tbody>
 </table>
