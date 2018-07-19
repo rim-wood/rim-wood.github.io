@@ -14,7 +14,7 @@
 <meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
-<meta property="og:updated_time" content="2018-07-19T09:44:39.614Z">
+<meta property="og:updated_time" content="2018-07-19T09:47:23.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 学习笔记（一）">
 <meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
@@ -449,7 +449,97 @@
 </tr>
 </tbody>
 </table>
-<p><strong>DATE_ADD(date,INTERVAL exper type)</strong>重点说明一下，<br>其中 INTERVAL 是间隔类型关键字，expr 是表达式， type是类型，<br>类型表如下<br>| type | 解释 |<br>| - | - |<br>| MICROSECOND | 间隔单位：毫秒 |<br>| SECOND | 间隔单位：秒 |<br>| MINUTE | 间隔单位：分钟 |<br>| HOUR | 间隔单位：小时 |<br>| DAY | 间隔单位：天 |<br>| WEEK | 间隔单位：星期 |<br>| MONTH | 间隔单位：月 |<br>| QUARTER | 间隔单位：季度 |<br>| YEAR | 间隔单位：年 |<br>| SECOND_MICROSECOND | 复合型，间隔单位：秒、毫秒，expr可以用两个值来分别指定秒和毫秒 |<br>| MINUTE_MICROSECOND | 复合型，间隔单位：分、毫秒 |<br>| MINUTE_SECOND | 复合型，间隔单位：分、秒 |<br>| HOUR_MICROSECOND | 复合型，间隔单位：小时、毫秒 |<br>| HOUR_SECOND | 复合型，间隔单位：小时、秒 |<br>| HOUR_MINUTE | 复合型，间隔单位：小时分 |<br>| DAY_MICROSECOND | 复合型，间隔单位：天、毫秒 |<br>| DAY_SECOND | 复合型，间隔单位：天、秒 |<br>| DAY_MINUTE | 复合型，间隔单位：天、分 |<br>| DAY_HOUR | 复合型，间隔单位：天、小时 |<br>| YEAR_MONTH | 复合型，间隔单位：年、月 |</p>
+<p><strong>DATE_ADD(date,INTERVAL exper type)</strong>重点说明一下，<br>其中 INTERVAL 是间隔类型关键字，expr 是表达式， type是类型，<br>类型表如下</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MICROSECOND</td>
+<td>间隔单位：毫秒</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>间隔单位：秒</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>间隔单位：分钟</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>间隔单位：小时</td>
+</tr>
+<tr>
+<td>DAY</td>
+<td>间隔单位：天</td>
+</tr>
+<tr>
+<td>WEEK</td>
+<td>间隔单位：星期</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>间隔单位：月</td>
+</tr>
+<tr>
+<td>QUARTER</td>
+<td>间隔单位：季度</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>间隔单位：年</td>
+</tr>
+<tr>
+<td>SECOND_MICROSECOND</td>
+<td>复合型，间隔单位：秒、毫秒，expr可以用两个值来分别指定秒和毫秒</td>
+</tr>
+<tr>
+<td>MINUTE_MICROSECOND</td>
+<td>复合型，间隔单位：分、毫秒</td>
+</tr>
+<tr>
+<td>MINUTE_SECOND</td>
+<td>复合型，间隔单位：分、秒</td>
+</tr>
+<tr>
+<td>HOUR_MICROSECOND</td>
+<td>复合型，间隔单位：小时、毫秒</td>
+</tr>
+<tr>
+<td>HOUR_SECOND</td>
+<td>复合型，间隔单位：小时、秒</td>
+</tr>
+<tr>
+<td>HOUR_MINUTE</td>
+<td>复合型，间隔单位：小时分</td>
+</tr>
+<tr>
+<td>DAY_MICROSECOND</td>
+<td>复合型，间隔单位：天、毫秒</td>
+</tr>
+<tr>
+<td>DAY_SECOND</td>
+<td>复合型，间隔单位：天、秒</td>
+</tr>
+<tr>
+<td>DAY_MINUTE</td>
+<td>复合型，间隔单位：天、分</td>
+</tr>
+<tr>
+<td>DAY_HOUR</td>
+<td>复合型，间隔单位：天、小时</td>
+</tr>
+<tr>
+<td>YEAR_MONTH</td>
+<td>复合型，间隔单位：年、月</td>
+</tr>
+</tbody>
+</table>
 <p>例如<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select date_add('2013-01-18', interval '1 2' YEAR_MONTH);</span><br><span class="line">+<span class="comment">-----------------------------------------------------+</span></span><br><span class="line">| date_add('2013-01-18', interval '1 2' YEAR_MONTH) |</span><br><span class="line">+<span class="comment">-----------------------------------------------------+</span></span><br><span class="line">| 2014-03-18                                          |</span><br><span class="line">+<span class="comment">-----------------------------------------------------+</span></span><br><span class="line"></span><br><span class="line">mysql&gt; select date_add('2013-01-18', interval '1-2' YEAR_MONTH);</span><br><span class="line">+<span class="comment">----------------------------------------------------+</span></span><br><span class="line">| date_add('2013-01-18', interval '1-2' YEAR_MONTH) |</span><br><span class="line">+<span class="comment">----------------------------------------------------+</span></span><br><span class="line">| 2014-03-18                                         |</span><br><span class="line">+<span class="comment">----------------------------------------------------+</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h1><table>
 <thead>
