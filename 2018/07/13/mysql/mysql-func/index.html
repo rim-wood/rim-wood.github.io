@@ -14,7 +14,7 @@
 <meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
-<meta property="og:updated_time" content="2018-07-19T06:44:30.176Z">
+<meta property="og:updated_time" content="2018-07-19T06:53:13.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 学习笔记（一）">
 <meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
@@ -401,43 +401,43 @@
 </tr>
 <tr>
 <td>CURTIME()</td>
-<td></td>
+<td>当前时间</td>
 </tr>
 <tr>
 <td>NOW()</td>
-<td>返回小于x的最小整数值</td>
+<td>当前日期和时间</td>
 </tr>
 <tr>
-<td>UNIX_TIMESTAMP(date</td>
-<td>返回x/y的模</td>
+<td>UNIX_TIMESTAMP(date)</td>
+<td>日期date的UNIX时间戳</td>
 </tr>
 <tr>
 <td>FROM_UNIXTIME</td>
-<td>返回0~1内的随机数</td>
+<td>UNIX时间戳的日期值</td>
 </tr>
 <tr>
 <td>WEEK(date)</td>
-<td>返回参数x的四舍五入的有y位小数的值</td>
+<td>日期date为一年中的第几周</td>
 </tr>
 <tr>
 <td>YEAR(date)</td>
-<td>返回数字x截断为y位小数的结果</td>
+<td>日期date的年份</td>
 </tr>
 <tr>
-<td>HOUR(date)</td>
-<td>返回参数x的四舍五入的有y位小数的值</td>
+<td>HOUR(time)</td>
+<td>time的小时值</td>
 </tr>
 <tr>
-<td>MINUTE(date)</td>
-<td>返回数字x截断为y位小数的结果</td>
+<td>MINUTE(time)</td>
+<td>time的分钟值</td>
 </tr>
 <tr>
 <td>MOONTHNAME(date)</td>
-<td>返回参数x的四舍五入的有y位小数的值</td>
+<td>date的月份名</td>
 </tr>
 <tr>
 <td>DATE_FORMAT(date,fmt)</td>
-<td>返回数字x截断为y位小数的结果</td>
+<td></td>
 </tr>
 <tr>
 <td>DATE_ADD(date,INTERVAL exper type)</td>
