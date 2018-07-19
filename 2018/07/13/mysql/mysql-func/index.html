@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Markdown学习 | 冰梨</title>
+    <title>mysql 学习笔记（一） | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也不超过十个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。">
-<meta name="keywords" content="Markdown">
+    <meta name="description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
+<meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown学习">
-<meta property="og:url" content="http://www.icepear.cn/2016/12/08/other/Markdown/index.html">
+<meta property="og:title" content="mysql 学习笔记（一）">
+<meta property="og:url" content="http://www.icepear.cn/2018/07/13/mysql/mysql-func/index.html">
 <meta property="og:site_name" content="冰梨">
-<meta property="og:description" content="Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也不超过十个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。">
+<meta property="og:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/markdown/markdown.jpg">
-<meta property="og:updated_time" content="2018-07-18T04:39:00.963Z">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
+<meta property="og:updated_time" content="2018-07-19T06:44:30.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown学习">
-<meta name="twitter:description" content="Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也不超过十个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。">
-<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/markdown/markdown.jpg">
+<meta name="twitter:title" content="mysql 学习笔记（一）">
+<meta name="twitter:description" content="mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png">
     
 
     
@@ -187,12 +187,12 @@
 </aside>
 
             
-            <section id="main"><article id="post-other/Markdown" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-mysql/mysql-func" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/markdown/markdown.jpg" class="article-banner" />
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png" class="article-banner" />
 	
 
 
@@ -203,7 +203,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            Markdown学习
+            mysql 学习笔记（一）
         </h1>
     
 
@@ -212,8 +212,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/08/other/Markdown/">
-            <time datetime="2016-12-08T07:30:02.000Z" itemprop="datePublished">2016-12-08</time>
+        <a href="/2018/07/13/mysql/mysql-func/">
+            <time datetime="2018-07-13T11:30:02.000Z" itemprop="datePublished">2018-07-13</time>
         </a>
     </div>
 
@@ -221,7 +221,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/other/">other</a>
+        <a class="article-category-link" href="/categories/mysql/">mysql</a>
     </div>
 
                     </div>
@@ -234,115 +234,218 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown学习"><span class="toc-number">1.</span> <span class="toc-text">Markdown学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标题"><span class="toc-number">1.1.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-number">1.2.</span> <span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-有序列表"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.有序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-无序列表"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.无序列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#换行与缩进"><span class="toc-number">1.3.</span> <span class="toc-text">换行与缩进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">1.4.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片"><span class="toc-number">1.5.</span> <span class="toc-text">图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分割线"><span class="toc-number">1.6.</span> <span class="toc-text">分割线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区块引用"><span class="toc-number">1.7.</span> <span class="toc-text">区块引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码区块"><span class="toc-number">1.8.</span> <span class="toc-text">代码区块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粗体和斜体"><span class="toc-number">1.9.</span> <span class="toc-text">粗体和斜体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格"><span class="toc-number">1.10.</span> <span class="toc-text">表格</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串函数"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的拼接、替换、裁剪"><span class="toc-number">1.1.</span> <span class="toc-text">字符串的拼接、替换、裁剪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的字符处理，对比"><span class="toc-number">1.2.</span> <span class="toc-text">字符串的字符处理，对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数值函数"><span class="toc-number">2.</span> <span class="toc-text">数值函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日期函数"><span class="toc-number">3.</span> <span class="toc-text">日期函数</span></a></li></ol>
                 </div>
             
-            <p>Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也不超过十个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。<br><a id="more"></a></p>
-<h1 id="Markdown学习"><a href="#Markdown学习" class="headerlink" title="Markdown学习"></a>Markdown学习</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>  <code>#</code>表示一级标题，<code>##</code>表示二级标题，多级标题依次累积</p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="1-有序列表"><a href="#1-有序列表" class="headerlink" title="1.有序列表"></a>1.有序列表</h3><p>在文本前加入数字<code>1.</code>,<code>2.</code>,<code>3.</code>即可</p>
-<pre><code>1. 列表1
-2. 列表2
-2. 列表3
-</code></pre><h3 id="2-无序列表"><a href="#2-无序列表" class="headerlink" title="2.无序列表"></a>2.无序列表</h3><p>在文本前加入<code>-</code></p>
-<pre><code>- 列表1
-- 列表2
-- 列表3
-</code></pre><p><em>注：<code>-</code>,<code>1.</code>和文本之间要保留一个字符的空格。</em></p>
-<h2 id="换行与缩进"><a href="#换行与缩进" class="headerlink" title="换行与缩进"></a>换行与缩进</h2><p>换行使用<code>&lt;/br&gt;</code>或者使用空行表示换行。缩进使用半方大的空白<code>&amp;ensp;</code>或<code>&amp;#8194;</code>也可以用<br>全方大的空白<code>&amp;emsp;</code>或<code>&amp;#8195;</code>例如：</p>
-<pre><code>&amp;ensp;你好&lt;/br&gt;&amp;emsp;世界
-</code></pre><p>显示：<br>&ensp;你好<br>&emsp;世界</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>格式为:<code>[文本](链接)</code>,例如</p>
-<pre><code>[google链接](https://www.google.com)
-</code></pre><p>显示如：<a href="https://www.google.com" target="_blank" rel="external">google链接</a></p>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>格式为：<code>![](图片链接)</code>,例如</p>
-<pre><code>![](http://g3.ykimg.com/0130391F4555C2DEFE9F592DF60A8431D4D237-366F-F0C2-ED67-4475501D05FC)
-</code></pre><p>显示为：<br><img src="http://g3.ykimg.com/0130391F4555C2DEFE9F592DF60A8431D4D237-366F-F0C2-ED67-4475501D05FC" alt=""></p>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用<br>    <pre><br>    <em>*</em> 三个星</pre></p>
-<pre><code>* * *
-- - - 三个带空格的中划线
-___ 连续三个下划线
-__________ 多个下划线
-&lt;/pre&gt;
-</code></pre><h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>使用<code>&gt;</code>,例如</p>
-<pre><code>&gt; 你好&lt;/br&gt;
-&gt; 世界&lt;/br&gt;
-&gt; I`m coder
-</code></pre><p>显示：</p>
-<blockquote>
-<p>你好<br><br>世界<br><br>I`m coder</p>
-</blockquote>
-<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>单句代码可以使用’ <code>` &#39;(也就是键盘~这个按钮)&lt;/br&gt;
-区块使用标签</code><pre><code>和</code><code>`嵌套，例如：</code></pre></p>
-<pre><code>`你好`
-&lt;pre&gt;&lt;code&gt;这是一个代码区块。&lt;/code&gt;&lt;/pre&gt;
-</code></pre><p>显示如：<br><br>    <code>你好</code><br>    <pre><code>这是一个代码区块。</code></pre></p>
-<h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>粗体的格式为<code>**文本**</code>，斜体的格式为<code>*文本*</code>例如:</p>
-<pre><code>**你好**&lt;/br&gt;
-*世界*
-</code></pre><p>显示:<br><br><strong>你好</strong><br><br><em>世界</em></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>格式如下:</p>
-<pre><code>| dog | bird | cat |
-| - | - | - |
-| foo | foo  | foo |
-| bar | bar  | bar |
-| baz | baz  | baz |
-</code></pre><p>显示如下</p>
-<table>
+            <p>mysql 常用函数，使用sql必然避免不了使用函数，函数往往能让你的工作事半功倍，常用的函数包括：字符串的处理，数值的运算，日期函数，流程控制。<br><a id="more"></a></p>
+<h1 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h1><table>
 <thead>
 <tr>
-<th>dog</th>
-<th>bird</th>
-<th>cat</th>
+<th>函数</th>
+<th>功能</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>foo</td>
-<td>foo</td>
-<td>foo</td>
+<td>CONCAT(s1,s2,…,sn)</td>
+<td>连接 s1，s2 …sn 为一个字符串</td>
 </tr>
 <tr>
-<td>bar</td>
-<td>bar</td>
-<td>bar</td>
+<td>INSERT(str,x,y,instr)</td>
+<td>将字符串str从第x位开始,y个字符串长度的子串替换成instr</td>
 </tr>
 <tr>
-<td>baz</td>
-<td>baz</td>
-<td>baz</td>
+<td>REPLACE(str,a,b)</td>
+<td>用字符串b替换字符串str中所有出现的字符串a</td>
+</tr>
+<tr>
+<td>SUBSTRING(str,x,y)</td>
+<td>截取字符串str从x位置到y位置的子串</td>
+</tr>
+<tr>
+<td>LEFT(str,x)</td>
+<td>返回字符串str最左边的x个字符</td>
+</tr>
+<tr>
+<td>RIGHT(str,x)</td>
+<td>返回字符串str最右边的x个字符</td>
+</tr>
+<tr>
+<td>LOWER(str)</td>
+<td>将字符串str中所有的字符变为小写</td>
+</tr>
+<tr>
+<td>UPPER(str)</td>
+<td>将字符串str中所有的字符变为大写</td>
+</tr>
+<tr>
+<td>LTRIM(str)</td>
+<td>去掉字符串左侧的空格</td>
+</tr>
+<tr>
+<td>RTRIM(str)</td>
+<td>去掉字符串行尾的空格</td>
+</tr>
+<tr>
+<td>TRIM(str)</td>
+<td>去掉字符串行头和行尾的空格</td>
+</tr>
+<tr>
+<td>LPAD(str,n,pad)</td>
+<td>用字符串pad对str最左边进行填充，直到长度为n个字符长度</td>
+</tr>
+<tr>
+<td>RPAD(str,n,pad)</td>
+<td>用字符串pad对str最右边进行填充，直到长度为n个字符长度</td>
+</tr>
+<tr>
+<td>REPEAT(str,x)</td>
+<td>返回str重复x次的结果</td>
+</tr>
+<tr>
+<td>STRCMP(s1,s2)</td>
+<td>比较字符串s1和s2</td>
 </tr>
 </tbody>
 </table>
-<p>格式如下:</p>
-<pre><code>| dog | bird | cat |
-| - | :-: | -: |
-| foo | foo  | foo |
-| bar | bar  | bar |
-| baz | baz  | baz |
-</code></pre><p>显示如下</p>
-<table>
+<h2 id="字符串的拼接、替换、裁剪"><a href="#字符串的拼接、替换、裁剪" class="headerlink" title="字符串的拼接、替换、裁剪"></a>字符串的拼接、替换、裁剪</h2><p>这些函数是最常见的，务必牢记</p>
+<ol>
+<li><p><strong>CONCAT(s1,s2,…,sn)</strong> 拼接字符串</p>
+<p> 下面例子将aa，bb，cc三个字符串拼接，另外任何字符串与NULL连接的结果都将是NULL</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select concat('aa','bb','cc'),concat('aa',null);</div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line">| concat('aa','bb','cc')  | concat('aa',null)    |</div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line">| aabbcc                  | NULL                 |</div><div class="line">+<span class="comment">-------------------------+----------------------+</span></div><div class="line">1 row in <span class="keyword">set</span>(<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>INSERT、REPLACE</strong> 两个函数都是替换字符串<br> 下面例子将abcd字符串替换成abcc，通过两个方法</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select insert('abcd',3,2,'cc'),replace('abcd','d','c');</div><div class="line">+<span class="comment">-------------------------+-------------------------+</span></div><div class="line">| <span class="keyword">insert</span>(<span class="string">'abcd'</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="string">'cc'</span>) | <span class="keyword">replace</span>(<span class="string">'abcd'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>) |</div><div class="line">+<span class="comment">-------------------------+-------------------------+</span></div><div class="line">| abcc                    | abcc                    |</div><div class="line">+<span class="comment">-------------------------+-------------------------+</span></div><div class="line"><span class="number">1</span> <span class="keyword">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>SUBSTRING、LEFT、RIGHT</strong> 三个函数都可以对字符串进行裁剪<br> substring相对灵活很多，left和right函数比较局限，只能截取左边或右边的子串，看三个例子</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select substring('abcdefg',2,5), left('abcdefg',4),right('abcdefg',4);</div><div class="line">+<span class="comment">--------------------------+-------------------+--------------------+</span></div><div class="line">| substring('abcdefg',2,5) | left('abcdefg',4) | right('abcdefg',4) |</div><div class="line">+<span class="comment">--------------------------+-------------------+--------------------+</span></div><div class="line">| bcdef                    | abcd              | defg               |</div><div class="line">+<span class="comment">--------------------------+-------------------+--------------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="字符串的字符处理，对比"><a href="#字符串的字符处理，对比" class="headerlink" title="字符串的字符处理，对比"></a>字符串的字符处理，对比</h2><ol>
+<li><p><strong>LOWER、UPPER、LTRIM、RTRIM、TRIM</strong> 等函数可以对字符串进行处理<br> LOWER、UPPER 用于大小写转换，LTRIM、RTRIM、TRIM用于对字符串空格处理。看例子</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select upper('abcd'),lower('ABCD'),ltrim(' $abcd'),rtrim('abcd$ '),trim(' $abcd$ ');</div><div class="line">+<span class="comment">---------------+---------------+-----------------+-----------------+------------------+</span></div><div class="line">| upper('abcd') | lower('ABCD') | ltrim(' $abcd') | rtrim('abcd$ ') | trim(' $abcd$ ') |</div><div class="line">+<span class="comment">---------------+---------------+-----------------+-----------------+------------------+</span></div><div class="line">| ABCD          | abcd          | $abcd           | abcd$           | $abcd$           |</div><div class="line">+<span class="comment">---------------+---------------+-----------------+-----------------+------------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>LPAD、RPAD</strong> 填充字符串函数<br> 左右填充字符串，直到长度为n，看例子</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select lpad('defg',8,'abcd'),rpad('abcd',8,'defg');</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">| lpad('defg',8,'abcd') | rpad('abcd',8,'defg') |</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">| abcddefg              | abcddefg              |</div><div class="line">+<span class="comment">-----------------------+-----------------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>REPEAT、STRCMP</strong>两个相对特殊一点的函数<br> 见例子，strcmp比较的是字符串的ASCII码大小，相等返回0，小返回-1，大返回1</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select repeat('abc',3),strcmp('a','a'),strcmp('aa','ab'),strcmp('b','a');   </div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| repeat('abc',3) | strcmp('a','a') | strcmp('aa','ab') | strcmp('b','a') |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">| abcabcabc       |               0 |                -1 |               1 |</div><div class="line">+<span class="comment">-----------------+-----------------+-------------------+-----------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h1><table>
 <thead>
 <tr>
-<th>dog</th>
-<th style="text-align:center">bird</th>
-<th style="text-align:right">cat</th>
+<th>函数</th>
+<th>功能</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>foo</td>
-<td style="text-align:center">foo</td>
-<td style="text-align:right">foo</td>
+<td>ABX(x)</td>
+<td>返回x的绝对值</td>
 </tr>
 <tr>
-<td>bar</td>
-<td style="text-align:center">bar</td>
-<td style="text-align:right">bar</td>
+<td>CEIL(x)</td>
+<td>返回大于x的最小整数值</td>
 </tr>
 <tr>
-<td>baz</td>
-<td style="text-align:center">baz</td>
-<td style="text-align:right">baz</td>
+<td>FLOOR(x)</td>
+<td>返回小于x的最小整数值</td>
+</tr>
+<tr>
+<td>MOD(x,y)</td>
+<td>返回x/y的模</td>
+</tr>
+<tr>
+<td>RAND()</td>
+<td>返回0~1内的随机数</td>
+</tr>
+<tr>
+<td>ROUND(x,y)</td>
+<td>返回参数x的四舍五入的有y位小数的值</td>
+</tr>
+<tr>
+<td>TRUNCATE(x,y)</td>
+<td>返回数字x截断为y位小数的结果</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p><strong>ABX(x)</strong> 绝对值</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select abs(-2),abs(2),abs(-5);</div><div class="line">+<span class="comment">---------+--------+---------+</span></div><div class="line">| abs(-2) | abs(2) | abs(-5) |</div><div class="line">+<span class="comment">---------+--------+---------+</span></div><div class="line">|       2 |      2 |       5 |</div><div class="line">+<span class="comment">---------+--------+---------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>CEIL(x)、FLOOR(x)</strong> 最小整数值</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select ceil(2.5),floor(2.5);</div><div class="line">+<span class="comment">-----------+------------+</span></div><div class="line">| ceil(2.5) | floor(2.5) |</div><div class="line">+<span class="comment">-----------+------------+</span></div><div class="line">|         3 |          2 |</div><div class="line">+<span class="comment">-----------+------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.01</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>MOD(x,y)</strong> 取模</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select mod(9,2),mod(17,5);</div><div class="line">+<span class="comment">----------+-----------+</span></div><div class="line">| mod(9,2) | mod(17,5) |</div><div class="line">+<span class="comment">----------+-----------+</span></div><div class="line">|        1 |         2 |</div><div class="line">+<span class="comment">----------+-----------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RAND()</strong> 0~1随机数<br> 可以通过组合方式，产生0~9的随机数，或者更大的随机数</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select rand(),floor(rand()*10);</div><div class="line">+<span class="comment">--------------------+------------------+</span></div><div class="line">| rand()             | floor(rand()*10) |</div><div class="line">+<span class="comment">--------------------+------------------+</span></div><div class="line">| 0.9055393793671759 |                7 |</div><div class="line">+<span class="comment">--------------------+------------------+</span></div><div class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>ROUND(x,y)、TRUNCATE(x,y)</strong> 四舍五入和截取</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select round(4.32354,3),round(4.32354,2),truncate(4.32354,3);</div><div class="line">+<span class="comment">------------------+------------------+---------------------+</span></div><div class="line">| round(4.32354,3) | round(4.32354,2) | <span class="keyword">truncate</span>(<span class="number">4.32354</span>,<span class="number">3</span>) |</div><div class="line">+<span class="comment">------------------+------------------+---------------------+</span></div><div class="line">|            <span class="number">4.324</span> |             <span class="number">4.32</span> |               <span class="number">4.323</span> |</div><div class="line">+<span class="comment">------------------+------------------+---------------------+</span></div><div class="line"><span class="number">1</span> <span class="keyword">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h1><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CURDATE())</td>
+<td>当前日期</td>
+</tr>
+<tr>
+<td>CURTIME()</td>
+<td></td>
+</tr>
+<tr>
+<td>NOW()</td>
+<td>返回小于x的最小整数值</td>
+</tr>
+<tr>
+<td>UNIX_TIMESTAMP(date</td>
+<td>返回x/y的模</td>
+</tr>
+<tr>
+<td>FROM_UNIXTIME</td>
+<td>返回0~1内的随机数</td>
+</tr>
+<tr>
+<td>WEEK(date)</td>
+<td>返回参数x的四舍五入的有y位小数的值</td>
+</tr>
+<tr>
+<td>YEAR(date)</td>
+<td>返回数字x截断为y位小数的结果</td>
+</tr>
+<tr>
+<td>HOUR(date)</td>
+<td>返回参数x的四舍五入的有y位小数的值</td>
+</tr>
+<tr>
+<td>MINUTE(date)</td>
+<td>返回数字x截断为y位小数的结果</td>
+</tr>
+<tr>
+<td>MOONTHNAME(date)</td>
+<td>返回参数x的四舍五入的有y位小数的值</td>
+</tr>
+<tr>
+<td>DATE_FORMAT(date,fmt)</td>
+<td>返回数字x截断为y位小数的结果</td>
+</tr>
+<tr>
+<td>DATE_ADD(date,INTERVAL exper type)</td>
+<td>返回参数x的四舍五入的有y位小数的值</td>
+</tr>
+<tr>
+<td>DATEDIEF(expr,expr2)</td>
+<td>返回数字x截断为y位小数的结果</td>
 </tr>
 </tbody>
 </table>
@@ -460,13 +563,13 @@ __________ 多个下划线
 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Markdown/">Markdown</a>
+        <a class="tag-link" href="/tags/Mysql/">Mysql</a>
     </div>
 
 </div>
             
     
-        <a href="http://www.icepear.cn/2016/12/08/other/Markdown/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2016/12/08/other/Markdown/">评论</a>
+        <a href="http://www.icepear.cn/2018/07/13/mysql/mysql-func/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.icepear.cn/2018/07/13/mysql/mysql-func/">评论</a>
     
 
         </footer>
@@ -475,15 +578,11 @@ __________ 多个下划线
         
 <nav id="article-nav">
     
-        <a href="/2016/12/09/springboot/SpringBoot1/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    SpringBoot学习-基本使用
-                
-            </div>
-        </a>
     
+        <a href="/2018/06/21/other/redis-conf/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">redis 配置解析</div>
+        </a>
     
 </nav>
 
