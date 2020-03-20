@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: 多线程 | 冰梨</title>
+    <title>适配器模式（adapter） | 冰梨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="冰梨">
-<meta property="og:url" content="https://www.icepear.cn/categories/多线程/index.html">
+    <meta name="description" content="适配器模式,连接两个接口的桥梁 ,适配器模式有两种，类适配器和对象适配器.">
+<meta name="keywords" content="适配器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="适配器模式（adapter）">
+<meta property="og:url" content="https://www.icepear.cn/2018/03/18/designpattern/adapter/index.html">
 <meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="适配器模式,连接两个接口的桥梁 ,适配器模式有两种，类适配器和对象适配器.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/adapter/adapter.png">
+<meta property="og:updated_time" content="2020-03-20T07:08:02.300Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰梨">
+<meta name="twitter:title" content="适配器模式（adapter）">
+<meta name="twitter:description" content="适配器模式,连接两个接口的桥梁 ,适配器模式有两种，类适配器和对象适配器.">
+<meta name="twitter:image" content="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/adapter/adapter.png">
     
 
     
@@ -180,50 +187,229 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">多线程</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-designpattern/adapter" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/adapter/adapter.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/06/10/concurrency/interview/">多线程高并发面试题（Multithreading &amp; Concurrency）</a>
+        <h1 class="article-title" itemprop="name">
+            适配器模式（adapter）
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/06/10/concurrency/interview/">
-            <time datetime="2017-06-10T11:30:02.000Z" itemprop="datePublished">2017-06-10</time>
+        <a href="/2018/03/18/designpattern/adapter/">
+            <time datetime="2018-03-18T12:30:00.000Z" itemprop="datePublished">2018-03-18</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/多线程/">多线程</a>
+        <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
     </div>
 
-                    
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类适配器"><span class="toc-number">1.</span> <span class="toc-text">类适配器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象适配器"><span class="toc-number">2.</span> <span class="toc-text">对象适配器</span></a></li></ol>
+                </div>
+            
+            <p>适配器模式,连接两个接口的桥梁 ,适配器模式有两种，类适配器和对象适配器.<br><a id="more"></a></p>
+<h1 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h1><p>类适配器主要是使用继承的方式连接两个接口,众所周知，苹果电脑连投影仪都是需要转接头转换的，那么我们就用这个做例子。</p>
+<p>电脑都可以投影，它又个投影的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">projection</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>苹果电脑的实现类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mac</span> <span class="title">implement</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">projection</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="comment">// todo</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>投影仪有个展示的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Projector</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>假如你的工程中有这几个类，然后你发现，show()方法中要写的操作，就是Mac中的操作，如果你的投影仪要想直接支持苹果电脑接口，就必须在show方法中实现放映的方法，但是如果又来一个其他类型的电脑，则必须又要实现另外一个接口，那投影仪商就不要活了，所以，投影仪也比较硬气，老子就一个洞爱上不上，你不习惯，你可以戴螺纹的，或者戴胶点的；所以呢，小杜和小冈就这么发家致富了。</p>
+<p>那么现在就来介绍小杜，哦不，介绍适配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectorAdapter</span> <span class="keyword">extends</span> <span class="title">Mac</span> <span class="title">implement</span> <span class="title">Projector</span></span>&#123;</span><br><span class="line">    <span class="comment">//实现投影仪的展示方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用苹果电脑的投影方法</span></span><br><span class="line">        projection();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是呢，此种类适配器不够灵活，java又不支持多继承，所以再来个其他类型的电脑，则又必须开一个适配器，才对得上。</p>
+<h1 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h1><p>那么我们不用继承，可以用什么呢，相必大家都知道，不继承的话，那就直接放里面去new吧。</p>
+<p>我们改造一下小杜投影仪适配插头。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectorAdapter</span> <span class="title">implement</span> <span class="title">Projector</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Mac mac;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PlayerAdapter</span> <span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mac = <span class="keyword">new</span> Mac();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//实现投影仪的示方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用苹果电脑的投影方法</span></span><br><span class="line">        mac.projection();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这样好像还不太行，遵循可以给多个电脑插的原则，只允许mac插好像不太合适。</p>
+<p>再改造一下，直接传电脑进来不就成了么。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectorAdapter</span> <span class="title">implement</span> <span class="title">Projector</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Computer computer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PlayerAdapter</span> <span class="params">(Computer computer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.computer = computer;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//实现投影仪的示方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用电脑的投影方法，至于什么电脑就看外面实例化的是个什么电脑</span></span><br><span class="line">        computer.projection();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br> --------------------------------------
+    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+    --------------------------------------
+    <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+    大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载的时候请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    <span class="donate_txt">
+  大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载的时候请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web() {
+        $('#donate').submit();
+    }
+
+    // var original_window_onload = window.onload;
+    // window.onload = function() {
+    //     if (original_window_onload) {
+    //         original_window_onload();
+    //     }
+    //     document.getElementById('donate_board_wdg').className = 'hidden';
+    // }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/多线程/">多线程</a>, <a class="tag-link" href="/tags/面试/">面试</a>, <a class="tag-link" href="/tags/高并发/">高并发</a>
+        <a class="tag-link" href="/tags/适配器模式/">适配器模式</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
 </div>
+            
+    
+        <a href="https://www.icepear.cn/2018/03/18/designpattern/adapter/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/03/18/designpattern/adapter/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/06/20/mysql/mysql-conf/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    mysql 配置解析
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/03/16/designpattern/prototype/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">原型模式（builder）</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
 </section>
             
                 <aside id="sidebar">
