@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>k8s 集群调度 | 冰梨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用">
+<meta name="keywords" content="k8s,nodeAffinity,Taint,Toleration">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s 集群调度">
+<meta property="og:url" content="https://www.icepear.cn/2019/09/15/k8s/prodicate/index.html">
+<meta property="og:site_name" content="冰梨">
+<meta property="og:description" content="因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-23T10:13:38.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="k8s 集群调度">
+<meta name="twitter:description" content="因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">冰梨</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">rim·wood</h2>
+            <h3 id="title" style="word-wrap: break-word;">java,node,go,docker,k8s,kafka,elk,springCloud,算法,设计模式</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>shenzhen, China</span>
+            <a id="follow" target="_blank" href="https://github.com/rim-wood">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                33
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                41
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/rim-wood" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-k8s/prodicate" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            k8s 集群调度
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/09/15/k8s/prodicate/">
+            <time datetime="2019-09-15T12:30:02.000Z" itemprop="datePublished">2019-09-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集群调度"><span class="toc-number">1.</span> <span class="toc-text">集群调度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调度过程"><span class="toc-number">1.2.</span> <span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#亲和性"><span class="toc-number">1.3.</span> <span class="toc-text">亲和性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#节点亲和性"><span class="toc-number">1.3.1.</span> <span class="toc-text">节点亲和性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pod亲和性"><span class="toc-number">1.3.2.</span> <span class="toc-text">pod亲和性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#污点-Taint-和容忍-Toleration"><span class="toc-number">1.4.</span> <span class="toc-text">污点 (Taint)和容忍(Toleration)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#污点"><span class="toc-number">1.4.1.</span> <span class="toc-text">污点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容忍"><span class="toc-number">1.4.2.</span> <span class="toc-text">容忍</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <p>因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用<br><a id="more"></a></p>
+<h1 id="集群调度"><a href="#集群调度" class="headerlink" title="集群调度"></a>集群调度</h1><p>因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Scheduler 是k8s的调度器，要保证四个特性</p>
+<ul>
+<li>公平</li>
+<li>资源高效利用</li>
+<li>效率</li>
+<li>灵活</li>
+</ul>
+<p>Scheduler是单独的程序运行的，启动之后会一直监听API Server，获取PodSpec.NodeName 为空的对每个pod都会创建一个binding，表明该pod应该放到那个节点上</p>
+<h2 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h2><p>调度分为几个部分： 首先过滤不满足条件的节点，这个过程称为 predicate 然后通过节点按照优先级排序，这个是  priority  ；最后从中选择优先级最高的节点。如果中间任何一步有错误，直接返回错误</p>
+<p>predicate 有一系列的算法可以使用</p>
+<ul>
+<li>PodFitsResources 节点上剩余的资源是否大于pod请求的资源</li>
+<li>PodFitsHost 如果pod制定了NodeName，检查节点名称是否匹配</li>
+<li>PodFitsHostPorts 节点上已经使用的port是否和pod申请的port冲突</li>
+<li>PodSelectorMatches 过滤掉和pod指定的label不匹配的节点</li>
+<li>NoDiskConflict 已经mount的volume 和pod指定的volume不冲突，除非他们都是只读</li>
+</ul>
+<p>如果在predicate过程中没有合适的节点，pod会一直在pending状态，不断重试调度，如果满足就会继续priorities过程：按照优先级大小对节点排序</p>
+<p>优先级由一系列的键值对组成，见识优先级项的名称，值是它的权重，这些优先级选项包括：</p>
+<ul>
+<li>LeastRequestedPriority 通过计算CPU和Memory的使用率来决定权重，使用率越低权重越高。换句话说就是，优先放到资源使用率低的节点上</li>
+<li>BalancedResourceAllocation 节点上CPU和Memory使用率越接近，权重越高。这个一般跟上一个一起使用，不应该单独使用</li>
+<li>ImageLocalityPriority 倾向于已经有要使用镜像的节点，镜像总大小值越大，权重越高</li>
+</ul>
+<h2 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h2><p>分为节点亲和性和pod的亲和性，而亲和性策略也分为软策略和硬策略，软策略为倾向性，硬策略则为必须满足才行。</p>
+<h3 id="节点亲和性"><a href="#节点亲和性" class="headerlink" title="节点亲和性"></a>节点亲和性</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nodeAffinity:</span></span><br><span class="line">  <span class="string">preferredDuringSchedulingIgnoredDuringExecution</span> <span class="string">软策略</span></span><br><span class="line">  <span class="string">requiredDuringSchedulingIgnoredDuringExecution</span> <span class="string">硬策略</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>下面看一个requiredDuringSchedulingIgnoredDuringExecution例子：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">affinity</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">node-affinity-pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">    containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">with-node-affinity</span></span><br><span class="line"><span class="attr">          image:</span> <span class="attr">myapp:v1</span></span><br><span class="line"><span class="attr">    affinity:</span></span><br><span class="line"><span class="attr">        nodeAffinity:</span></span><br><span class="line"><span class="attr">            requiredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">               nodeSelectorTerms:</span></span><br><span class="line"><span class="attr">                   - matchExpressions:</span> <span class="comment">#匹配规则</span></span><br><span class="line"><span class="attr">                       - key:</span> <span class="string">kubernetes.io/hostname</span> <span class="comment">#规则为主机名</span></span><br><span class="line"><span class="attr">                         operator:</span> <span class="string">NotIn</span>             <span class="comment">#条件为NotIn</span></span><br><span class="line"><span class="attr">                         values:</span>                     <span class="comment">#值为下面名称    </span></span><br><span class="line"><span class="bullet">                             -</span> <span class="string">k8s-node02</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>注意nodeSelectorTerms下面有多个选项的话，满足任何一个条件即可，但是如果matchExpressions 有多个选项的话，则必须同时满足这些条件才能正常调度</strong></p>
+<ol start="2">
+<li>preferredDuringSchedulingIgnoredDuringExecution例子：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">affinity</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">node-affinity-pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">    containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">with-node-affinity</span></span><br><span class="line"><span class="attr">          image:</span> <span class="attr">myapp:v1</span></span><br><span class="line"><span class="attr">    affinity:</span></span><br><span class="line"><span class="attr">        nodeAffinity:</span></span><br><span class="line"><span class="attr">            preferredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">               - weight:</span> <span class="number">1</span>                   <span class="comment"># 权重，权重越大优先级越大</span></span><br><span class="line"><span class="attr">               preference:</span></span><br><span class="line"><span class="attr">                   matchExpressions:</span> <span class="comment">#匹配规则</span></span><br><span class="line"><span class="attr">                       - key:</span> <span class="string">source</span>              <span class="comment">#规则为一个source的标签</span></span><br><span class="line"><span class="attr">                         operator:</span> <span class="string">In</span>             <span class="comment">#条件为In</span></span><br><span class="line"><span class="attr">                         values:</span>                  <span class="comment">#值为下面名称    </span></span><br><span class="line"><span class="bullet">                             -</span> <span class="string">saddas</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>键值运算关系</p>
+<ul>
+<li>In label的值在某个列表中</li>
+<li>NotIn label的值不在某个列表中</li>
+<li>Gt label的值大于某个值</li>
+<li>Lt label的值小于某个值</li>
+<li>Exists 某个label存在</li>
+<li>DoesNotExist 某个label不存在</li>
+</ul>
+<h3 id="pod亲和性"><a href="#pod亲和性" class="headerlink" title="pod亲和性"></a>pod亲和性</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">podAntiAffinity:</span></span><br><span class="line">    <span class="string">requiredDuringSchedulingIgnoredDuringExecution</span> <span class="string">软策略</span></span><br><span class="line">    <span class="string">preferredDuringSchedulingIgnoredDuringExecution</span> <span class="string">硬策略</span></span><br></pre></td></tr></table></figure>
+<p>例子：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">with-pod-affinity</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  affinity:</span></span><br><span class="line"><span class="attr">    podAffinity:</span>    <span class="comment"># pod与指定的pod在同一拓扑域</span></span><br><span class="line"><span class="attr">      requiredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">      - labelSelector:</span></span><br><span class="line"><span class="attr">          matchExpressions:</span></span><br><span class="line"><span class="attr">          - key:</span> <span class="string">security</span></span><br><span class="line"><span class="attr">            operator:</span> <span class="string">In</span></span><br><span class="line"><span class="attr">            values:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">S1</span></span><br><span class="line"><span class="attr">        topologyKey:</span> <span class="string">failure-domain.beta.kubernetes.io/zone</span></span><br><span class="line"><span class="attr">    podAntiAffinity:</span> <span class="comment"># pod与指定的pod不在同一拓扑域</span></span><br><span class="line"><span class="attr">      preferredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">      - weight:</span> <span class="number">100</span></span><br><span class="line"><span class="attr">        podAffinityTerm:</span></span><br><span class="line"><span class="attr">          labelSelector:</span></span><br><span class="line"><span class="attr">            matchExpressions:</span></span><br><span class="line"><span class="attr">            - key:</span> <span class="string">security</span></span><br><span class="line"><span class="attr">              operator:</span> <span class="string">In</span></span><br><span class="line"><span class="attr">              values:</span></span><br><span class="line"><span class="bullet">              -</span> <span class="string">S2</span></span><br><span class="line"><span class="attr">          topologyKey:</span> <span class="string">kubernetes.io/hostname</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">with-pod-affinity</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">gcr.io/google_containers/pause:2.0</span></span><br></pre></td></tr></table></figure></p>
+<p>原则上，topologyKey可以是任意标签，为了性能考虑只允许一些有限的topologyKey，默认情况下，有以下几个：</p>
+<ul>
+<li>kubernetes.io/hostname</li>
+<li>failure-domain.beta.kubernetes.io/zone</li>
+<li>failure-domain.beta.kubernetes.io/region</li>
+</ul>
+<h2 id="污点-Taint-和容忍-Toleration"><a href="#污点-Taint-和容忍-Toleration" class="headerlink" title="污点 (Taint)和容忍(Toleration)"></a>污点 (Taint)和容忍(Toleration)</h2><p>taint和toleration相互配合使用，可以避免pod被分配到不合适的节点上，每个节点上都可以应用一个或多个taint，这表示那些不能容忍这些taint的pod，不会被该节点运行，如果toleration应用于pod，则表示这些pod可以被调度到具有匹配taint的节点上</p>
+<h3 id="污点"><a href="#污点" class="headerlink" title="污点"></a>污点</h3><p>使用kubectl taint 命令可以给某个Node节点设置污点，node被设置上污点之后就合pod之间存在了一种互斥的关系，可以让node拒绝pod的调度执行，甚至将node已经存在的pod驱逐</p>
+<p>污点的形式如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key=value:effect</span><br></pre></td></tr></table></figure></p>
+<p>而effect有三个选项</p>
+<ul>
+<li>NoSchedule  不会调度到具有该污点的node上</li>
+<li>PreferNoSchedule 尽量避免调度到具有该污点的node上</li>
+<li>NoExecute 不会调度到具有该污点的node上，并且会将node上已经存在的pod驱逐</li>
+</ul>
+<p>污点的设置、查看和移除<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置污点</span></span><br><span class="line">$ kubectl taint nodes node1 key1=value1:NoSchedule</span><br><span class="line"></span><br><span class="line"><span class="comment">#节点说明中，查找Taints字段</span></span><br><span class="line">$ kubectl describe pod pod-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除污点</span></span><br><span class="line">$ kubectl taint nodes node1 key1:NoSchedule-</span><br></pre></td></tr></table></figure></p>
+<h3 id="容忍"><a href="#容忍" class="headerlink" title="容忍"></a>容忍</h3><p>既然污点是针对node，那么容忍则是针对pod。pod如果能容忍污点，那么pod就可以运行</p>
+<p>通过 pod.spec.tolerations 配置</p>
+<p>例如<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">toleration:</span></span><br><span class="line"><span class="attr">    - key:</span><span class="string">"key1"</span></span><br><span class="line"><span class="attr">      oprator:</span> <span class="string">"Equal"</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"value1"</span></span><br><span class="line"><span class="attr">      effect:</span> <span class="string">"NoSchedule"</span></span><br><span class="line"><span class="attr">      tolerationSeconds:</span> <span class="number">8000</span></span><br><span class="line"><span class="attr">    - key:</span><span class="string">"key1"</span></span><br><span class="line"><span class="attr">      oprator:</span> <span class="string">"Equal"</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"value1"</span></span><br><span class="line"><span class="attr">      effect:</span> <span class="string">"NoExecute"</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>其中key，value,effect 要与node上设置的taint保持一致</li>
+<li>operator 的值为Exists将会忽略value的值</li>
+<li>tolerationSeconds 用于描述当pod需要呗驱逐时可以在pod上继续保留运行的时间</li>
+</ul>
+<p><strong>当不指定key时，表示容忍所有的污点key，当不指定effect时，表示容忍所有的污点作用</strong></p>
+
+
+            
+                 <!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    .donate_bar .btn{
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .donate_bar .btn_donate {
+        display: inline-block;
+        margin: 20px;
+        padding: 8px 25px;
+        font-size: 20px;
+        color: #fff;
+        background-color: #ea6f5a;
+        border-radius: 20px;
+    }
+    
+    .donate_bar a.btn_donate:hover {
+        background-position: 0px -82px;
+    }
+    
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<!-- /css -->
+
+<!-- btn_donate & tips -->
+<div id="donate_board" class="donate_bar center">
+    <br> 
+    --------------------------------------<span>文章到此就结束了，有疑问可以下方评论</span>--------------------------------------
+    <br>
+    <div id="btn_donate" class="btn btn_donate" target="_self" href="javascript:;" title="Donate 打赏"> 赞赏支持 </div>
+    <span class="donate_txt">
+    大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载时请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+
+</div>
+<!-- /btn_donate & tips -->
+
+<!-- donate guide -->
+
+<div id="donate_guide" class="donate_bar center hidden">
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>支付宝打赏二维码</span>
+    <a href="/content/images/2016/08/zhifubao.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/zhifubao.jpg" title="" class="gallery-item" lg-event-uid="&amp;7">
+            <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    &nbsp;&nbsp;
+    <br> ------------------------------------------------------------------------------------------------------------------------------
+    <br>
+    <span>微信打赏二维码</span>
+    <a href="/content/images/2016/08/weixinzhifu.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+        <a href="https://rim-wood.github.io/css/images/weixin.jpg" title="" class="gallery-item" lg-event-uid="&amp;8">
+            <img src="/css/images/weixin.jpg" title="微信打赏 Colin" height="190px" width="auto">
+        </a>
+    </a>
+
+    <span class="donate_txt">
+  大部分文章都是自创，如您觉得文章不错，对您有所帮助，转载的时候请注明出处，也可以通过“支付宝”或“微信支付”请我喝咖啡。
+</span>
+
+</div>
+<!-- /donate guide -->
+
+<!-- donate script -->
+<script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web() {
+        $('#donate').submit();
+    }
+
+    // var original_window_onload = window.onload;
+    // window.onload = function() {
+    //     if (original_window_onload) {
+    //         original_window_onload();
+    //     }
+    //     document.getElementById('donate_board_wdg').className = 'hidden';
+    // }
+</script>
+<!-- /donate script -->
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Taint/">Taint</a>, <a class="tag-link" href="/tags/Toleration/">Toleration</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>, <a class="tag-link" href="/tags/nodeAffinity/">nodeAffinity</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/09/15/k8s/prodicate/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/09/15/k8s/prodicate/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/09/20/k8s/helm/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    helm 总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2019/09/12/k8s/store/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">k8s 存储</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+<div id="gitalk-container"></div>
+
+        
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/25/k8s/helmgrammar/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/25/k8s/helmgrammar/" class="title">helm 语法</a></p>
+                            <p class="item-date"><time datetime="2019-09-25T12:30:02.000Z" itemprop="datePublished">2019-09-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/20/k8s/helm/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/20/k8s/helm/" class="title">helm 总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-20T12:30:02.000Z" itemprop="datePublished">2019-09-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/15/k8s/prodicate/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/15/k8s/prodicate/" class="title">k8s 集群调度</a></p>
+                            <p class="item-date"><time datetime="2019-09-15T12:30:02.000Z" itemprop="datePublished">2019-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/12/k8s/store/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/12/k8s/store/" class="title">k8s 存储</a></p>
+                            <p class="item-date"><time datetime="2019-09-12T11:30:02.000Z" itemprop="datePublished">2019-09-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/09/k8s/service/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/08/09/k8s/service/" class="title">k8s service访问控制</a></p>
+                            <p class="item-date"><time datetime="2019-08-09T14:30:08.000Z" itemprop="datePublished">2019-08-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java-util/">java.util</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/k8s/">k8s</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/security/">security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList-List/">ArrayList List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap-Map/">HashMap Map</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-Mysql/">SQL Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/StateFulSet/">StateFulSet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Taint/">Taint</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toleration/">Toleration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configmap/">configmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/">deployment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/">nfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodeAffinity/">nodeAffinity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/">spring cloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/volumes/">volumes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ArrayList-List/" style="font-size: 10px;">ArrayList List</a> <a href="/tags/HashMap-Map/" style="font-size: 10px;">HashMap Map</a> <a href="/tags/Hystrix/" style="font-size: 10px;">Hystrix</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SQL-Mysql/" style="font-size: 15px;">SQL Mysql</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/StateFulSet/" style="font-size: 10px;">StateFulSet</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Taint/" style="font-size: 10px;">Taint</a> <a href="/tags/Toleration/" style="font-size: 10px;">Toleration</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/configmap/" style="font-size: 10px;">configmap</a> <a href="/tags/deployment/" style="font-size: 10px;">deployment</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/helm/" style="font-size: 15px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/k8s/" style="font-size: 20px;">k8s</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nodeAffinity/" style="font-size: 10px;">nodeAffinity</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/volumes/" style="font-size: 10px;">volumes</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/建造者模式/" style="font-size: 10px;">建造者模式</a> <a href="/tags/持续集成/" style="font-size: 15px;">持续集成</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <br id="footer-info" class="inner">
+            &copy; 2020 rim-wood
+            </br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bc6d136c303c83c87c0f3c9d93ed2871";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID:  '5c65270f09aa1a999b42',
+        clientSecret: '66dd62e2a50a6d5137c7fd89b665a350c5a1ae2a',
+        repo: 'rim-wood.github.io',
+        id: window.location.pathname,
+        owner: 'rim-wood',
+        admin: 'rim-wood',
+        distractionFreeMode: 'true',
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

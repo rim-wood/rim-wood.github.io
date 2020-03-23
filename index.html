@@ -152,11 +152,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                22
+                33
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                26
+                41
                 <span>标签</span>
             </div>
         </div>
@@ -181,6 +181,520 @@
 
             
             <section id="main">
+    <article id="post-k8s/helmgrammar" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/09/25/k8s/helmgrammar/">helm 语法</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/09/25/k8s/helmgrammar/">
+            <time datetime="2019-09-25T12:30:02.000Z" itemprop="datePublished">2019-09-25</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>想要快速的运行管理容器，helm就免不了，但是又不能总是用别人的charts，对于自己的项目肯定需要编写helm模板，所以就有必要学习helm的语法<br></p>
+            <p class="article-more-link">
+                <a href="/2019/09/25/k8s/helmgrammar/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/helm/">helm</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/09/25/k8s/helmgrammar/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/09/25/k8s/helmgrammar/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/helm" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/09/20/k8s/helm/">helm 总结</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/09/20/k8s/helm/">
+            <time datetime="2019-09-20T12:30:02.000Z" itemprop="datePublished">2019-09-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>helm分为helm客户端和tiller服务器。k8s的部署如果用kubectl一个个创建显得太繁琐了；为了让k8s像docker compose一样快速启动一组pod，就有了helm。<br>helm客户端负责chart和release的创建和管理以及和tiller的交互，而tiller服务器则运行在k8s集群中，他负责处理helm客户端的请求，然后转化为 KubeApiServer 的请求跟k8s交互<br></p>
+            <p class="article-more-link">
+                <a href="/2019/09/20/k8s/helm/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/helm/">helm</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/09/20/k8s/helm/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/09/20/k8s/helm/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/prodicate" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/09/15/k8s/prodicate/">k8s 集群调度</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/09/15/k8s/prodicate/">
+            <time datetime="2019-09-15T12:30:02.000Z" itemprop="datePublished">2019-09-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>因为集群节点性能的不同，所以应用分布也需要针对节点特性进行部署，比如，一些节点cpu性能特别强，可以针对大型计算的应用部署，而一些节点存储是ssd的存储，存储速度很快，可以部署一些索引排序的应用，这就是集群调度的作用<br></p>
+            <p class="article-more-link">
+                <a href="/2019/09/15/k8s/prodicate/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Taint/">Taint</a>, <a class="tag-link" href="/tags/Toleration/">Toleration</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>, <a class="tag-link" href="/tags/nodeAffinity/">nodeAffinity</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/09/15/k8s/prodicate/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/09/15/k8s/prodicate/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/store" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/09/12/k8s/store/">k8s 存储</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/09/12/k8s/store/">
+            <time datetime="2019-09-12T11:30:02.000Z" itemprop="datePublished">2019-09-12</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>k8s 存储是一个对于pod的一个外置存储对象，通过pod—&gt;pvc—&gt;pv—&gt;物理存储的一个过程<br></p>
+            <p class="article-more-link">
+                <a href="/2019/09/12/k8s/store/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/configmap/">configmap</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>, <a class="tag-link" href="/tags/nfs/">nfs</a>, <a class="tag-link" href="/tags/volumes/">volumes</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/09/12/k8s/store/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/09/12/k8s/store/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/service" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/08/09/k8s/service/">k8s service访问控制</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/08/09/k8s/service/">
+            <time datetime="2019-08-09T14:30:08.000Z" itemprop="datePublished">2019-08-09</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>kubernetes Service 定义了一个抽象层：用来管理Pod的逻辑分组，外部访问service即可以访问Pod的策略，pod和service通过Label Selector连接<br></p>
+            <p class="article-more-link">
+                <a href="/2019/08/09/k8s/service/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/k8s/">k8s</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/08/09/k8s/service/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/08/09/k8s/service/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/deployment" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/08/05/k8s/deployment/">k8s 控制器</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/08/05/k8s/deployment/">
+            <time datetime="2019-08-05T11:30:02.000Z" itemprop="datePublished">2019-08-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>k8s中内置的控制器相当于一个状态机，用来控制Pod的具体状态和行为<br></p>
+            <p class="article-more-link">
+                <a href="/2019/08/05/k8s/deployment/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/StateFulSet/">StateFulSet</a>, <a class="tag-link" href="/tags/deployment/">deployment</a>, <a class="tag-link" href="/tags/k8s/">k8s</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/08/05/k8s/deployment/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/08/05/k8s/deployment/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-k8s/k8sbase" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/08/01/k8s/k8sbase/">k8s 基础定义</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/08/01/k8s/k8sbase/">
+            <time datetime="2019-08-01T13:30:00.000Z" itemprop="datePublished">2019-08-01</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/k8s/">k8s</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>kubernetes是一个开源的，用于管理云平台中多个主机上的容器化的应用，Kubernetes的目标是让部署容器化的应用简单并且高效（powerful）,Kubernetes提供了应用部署，规划，更新，维护的一种机制。<br>Kubernetes一个核心的特点就是能够自主的管理容器来保证云平台中的容器按照用户的期望状态运行着（比如用户想让apache一直运行，用户不需要关心怎么去做，Kubernetes会自动去监控，然后去重启，新建，总之，让apache一直提供服务），管理员可以加载一个微型服务，让规划器来找到合适的位置，同时，Kubernetes也系统提升工具以及人性化方面，让用户能够方便的部署自己的应用（就像canary deployments）。<br></p>
+            <p class="article-more-link">
+                <a href="/2019/08/01/k8s/k8sbase/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/k8s/">k8s</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/08/01/k8s/k8sbase/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/08/01/k8s/k8sbase/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-springcloud/hystrix" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2019/01/20/springcloud/hystrix/" itemprop="url">
+            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/springboot/hystrix.png" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/01/20/springcloud/hystrix/">Hystrix 熔断器</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/01/20/springcloud/hystrix/">
+            <time datetime="2019-01-20T12:30:02.000Z" itemprop="datePublished">2019-01-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/springcloud/">springcloud</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>在微服务场景中，通常会有很多层的服务调用。如果一个底层服务出现问题，故障会被向上传播给用户。我们需要一种机制，当底层服务不可用时，可以阻断故障的传播。这就是断路器的作用。他是系统服务稳定性的最后一重保障。<br>在springcloud中断路器组件就是Hystrix。Hystrix也是Netflix套件的一部分。他的功能是，当对某个服务的调用在一定的时间内（默认10s，由metrics.rollingStats.timeInMilliseconds配置），有超过一定次数（默认20次，由circuitBreaker.requestVolumeThreshold参数配置）并且失败率超过一定值（默认50%，由circuitBreaker.errorThresholdPercentage配置），该服务的断路器会打开。返回一个由开发者设定的fallback<br></p>
+            <p class="article-more-link">
+                <a href="/2019/01/20/springcloud/hystrix/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Hystrix/">Hystrix</a>, <a class="tag-link" href="/tags/spring-cloud/">spring cloud</a>
+    </div>
+
+</div>
+            
+    
+        <a href="https://www.icepear.cn/2019/01/20/springcloud/hystrix/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2019/01/20/springcloud/hystrix/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-network/tcp_connect" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -317,582 +831,8 @@
 
 
 
-    <article id="post-other/redis-conf" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/06/21/other/redis-conf/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/redis-conf/redis.jpeg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/06/21/other/redis-conf/">redis 配置解析</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/06/21/other/redis-conf/">
-            <time datetime="2018-06-21T11:30:02.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/other/">other</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>拿着原始的redis.conf进行一一解析，应该算是最全的解析版本了<br></p>
-            <p class="article-more-link">
-                <a href="/2018/06/21/other/redis-conf/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Redis/">Redis</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2018/06/21/other/redis-conf/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/06/21/other/redis-conf/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-mysql/mysql-conf" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/06/20/mysql/mysql-conf/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/06/20/mysql/mysql-conf/">mysql 配置解析</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/06/20/mysql/mysql-conf/">
-            <time datetime="2018-06-20T11:30:02.000Z" itemprop="datePublished">2018-06-20</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>最近对mysql的配置进行了了解，通过一些文档，所以把配置的一些参数都罗列了一下<br></p>
-            <p class="article-more-link">
-                <a href="/2018/06/20/mysql/mysql-conf/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Mysql/">Mysql</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2018/06/20/mysql/mysql-conf/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/06/20/mysql/mysql-conf/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-designpattern/adapter" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/03/18/designpattern/adapter/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/adapter/adapter.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/18/designpattern/adapter/">适配器模式（adapter）</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/18/designpattern/adapter/">
-            <time datetime="2018-03-18T12:30:00.000Z" itemprop="datePublished">2018-03-18</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>适配器模式,连接两个接口的桥梁 ,适配器模式有两种，类适配器和对象适配器.<br></p>
-            <p class="article-more-link">
-                <a href="/2018/03/18/designpattern/adapter/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/适配器模式/">适配器模式</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2018/03/18/designpattern/adapter/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/03/18/designpattern/adapter/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-designpattern/prototype" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/03/16/designpattern/prototype/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/prototype/prototype.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/16/designpattern/prototype/">原型模式（builder）</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/16/designpattern/prototype/">
-            <time datetime="2018-03-16T10:30:00.000Z" itemprop="datePublished">2018-03-16</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>原型模式是构造性模式中的一种，它的宗旨就是创建重复的对象，通过克隆，充分保障性能。<br></p>
-            <p class="article-more-link">
-                <a href="/2018/03/16/designpattern/prototype/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/原型模式/">原型模式</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2018/03/16/designpattern/prototype/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/03/16/designpattern/prototype/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-designpattern/builder" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/03/14/designpattern/builder/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/builder/builder.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/03/14/designpattern/builder/">建造者模式（builder）</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/03/14/designpattern/builder/">
-            <time datetime="2018-03-14T08:30:00.000Z" itemprop="datePublished">2018-03-14</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>建造者模式属于设计模式中的构造性模式，也就是说该模式基本上是用在构建对象的时候。它的宗旨就是将一个复杂的事物，进行一步一步的构建，需要什么就拼接成什么。<br></p>
-            <p class="article-more-link">
-                <a href="/2018/03/14/designpattern/builder/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/建造者模式/">建造者模式</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2018/03/14/designpattern/builder/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2018/03/14/designpattern/builder/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-mysql/sql_optimization" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/11/15/mysql/sql_optimization/">sql的优化</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/15/mysql/sql_optimization/">
-            <time datetime="2017-11-15T10:00:00.000Z" itemprop="datePublished">2017-11-15</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>在应用开发初期，由于数据量小，开发人员写sql时更加注重功能实现，但当应用上线后，数据量的上升，很多sql的性能问题就逐渐显露出来，成为系统性能的瓶颈，下面介绍一些优化方法<br></p>
-            <p class="article-more-link">
-                <a href="/2017/11/15/mysql/sql_optimization/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SQL-Mysql/">SQL Mysql</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2017/11/15/mysql/sql_optimization/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2017/11/15/mysql/sql_optimization/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-mysql/sql_join" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/08/15/mysql/sql_join/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/sql/join/sql_join.png" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/15/mysql/sql_join/">一张图带你理解sql的join</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/15/mysql/sql_join/">
-            <time datetime="2017-08-15T10:00:00.000Z" itemprop="datePublished">2017-08-15</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>在数据库查询中，连表查询是经常需要操作的，其关键字就是利用join，下面一张图带你充分理解各种join的意义<br></p>
-            <p class="article-more-link">
-                <a href="/2017/08/15/mysql/sql_join/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/SQL-Mysql/">SQL Mysql</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2017/08/15/mysql/sql_join/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2017/08/15/mysql/sql_join/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-other/api-security" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/08/09/other/api-security/" itemprop="url">
-            <img src="http://icepear.oss-cn-shenzhen.aliyuncs.com/other/api-security/api-security.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/09/other/api-security/">接口安全策略</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/09/other/api-security/">
-            <time datetime="2017-08-09T11:30:02.000Z" itemprop="datePublished">2017-08-09</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/security/">security</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>在做接口的时候，我们经常会对安全这方面进行考虑，包括认证授权，接口安全等方面，下面就介绍一种接口安全的设计，如果有什么其他好的设计，都可以在评论区提出交流<br></p>
-            <p class="article-more-link">
-                <a href="/2017/08/09/other/api-security/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/api/">api</a>, <a class="tag-link" href="/tags/security/">security</a>
-    </div>
-
-</div>
-            
-    
-        <a href="https://www.icepear.cn/2017/08/09/other/api-security/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://www.icepear.cn/2017/08/09/other/api-security/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -907,7 +847,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/08/09/network/tcp_connect/" class="thumbnail">
+                            <a href="/2019/09/25/k8s/helmgrammar/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -917,85 +857,85 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
-                            <p class="item-title"><a href="/2018/08/09/network/tcp_connect/" class="title">TCP连接及传输</a></p>
-                            <p class="item-date"><time datetime="2018-08-09T11:30:02.000Z" itemprop="datePublished">2018-08-09</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/25/k8s/helmgrammar/" class="title">helm 语法</a></p>
+                            <p class="item-date"><time datetime="2019-09-25T12:30:02.000Z" itemprop="datePublished">2019-09-25</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/07/13/mysql/mysql-func/" class="thumbnail">
+                            <a href="/2019/09/20/k8s/helm/" class="thumbnail">
     
     
-        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png)" alt="mysql 学习笔记（一）" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
-                            <p class="item-title"><a href="/2018/07/13/mysql/mysql-func/" class="title">mysql 学习笔记（一）</a></p>
-                            <p class="item-date"><time datetime="2018-07-13T11:30:02.000Z" itemprop="datePublished">2018-07-13</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/20/k8s/helm/" class="title">helm 总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-20T12:30:02.000Z" itemprop="datePublished">2019-09-20</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/06/21/other/redis-conf/" class="thumbnail">
+                            <a href="/2019/09/15/k8s/prodicate/" class="thumbnail">
     
     
-        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/other/redis-conf/redis.jpeg)" alt="redis 配置解析" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/other/">other</a></p>
-                            <p class="item-title"><a href="/2018/06/21/other/redis-conf/" class="title">redis 配置解析</a></p>
-                            <p class="item-date"><time datetime="2018-06-21T11:30:02.000Z" itemprop="datePublished">2018-06-21</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/15/k8s/prodicate/" class="title">k8s 集群调度</a></p>
+                            <p class="item-date"><time datetime="2019-09-15T12:30:02.000Z" itemprop="datePublished">2019-09-15</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/06/20/mysql/mysql-conf/" class="thumbnail">
+                            <a href="/2019/09/12/k8s/store/" class="thumbnail">
     
     
-        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/other/mysql-conf/mysql.png)" alt="mysql 配置解析" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
-                            <p class="item-title"><a href="/2018/06/20/mysql/mysql-conf/" class="title">mysql 配置解析</a></p>
-                            <p class="item-date"><time datetime="2018-06-20T11:30:02.000Z" itemprop="datePublished">2018-06-20</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/09/12/k8s/store/" class="title">k8s 存储</a></p>
+                            <p class="item-date"><time datetime="2019-09-12T11:30:02.000Z" itemprop="datePublished">2019-09-12</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/03/18/designpattern/adapter/" class="thumbnail">
+                            <a href="/2019/08/09/k8s/service/" class="thumbnail">
     
     
-        <span style="background-image:url(http://icepear.oss-cn-shenzhen.aliyuncs.com/designpattern/adapter/adapter.png)" alt="适配器模式（adapter）" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/设计模式/">设计模式</a></p>
-                            <p class="item-title"><a href="/2018/03/18/designpattern/adapter/" class="title">适配器模式（adapter）</a></p>
-                            <p class="item-date"><time datetime="2018-03-18T12:30:00.000Z" itemprop="datePublished">2018-03-18</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+                            <p class="item-title"><a href="/2019/08/09/k8s/service/" class="title">k8s service访问控制</a></p>
+                            <p class="item-date"><time datetime="2019-08-09T14:30:08.000Z" itemprop="datePublished">2019-08-09</time></p>
                         </div>
                     </li>
                 
@@ -1008,7 +948,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java-util/">java.util</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/security/">security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">6</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java-util/">java.util</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/k8s/">k8s</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/security/">security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -1017,7 +957,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1026,7 +966,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList-List/">ArrayList List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap-Map/">HashMap Map</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-Mysql/">SQL Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList-List/">ArrayList List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap-Map/">HashMap Map</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-Mysql/">SQL Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/StateFulSet/">StateFulSet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Taint/">Taint</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toleration/">Toleration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configmap/">configmap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/">deployment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/">nfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodeAffinity/">nodeAffinity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/">spring cloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/volumes/">volumes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂模式/">工厂模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1035,7 +975,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ArrayList-List/" style="font-size: 10px;">ArrayList List</a> <a href="/tags/HashMap-Map/" style="font-size: 10px;">HashMap Map</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 20px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SQL-Mysql/" style="font-size: 20px;">SQL Mysql</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 20px;">network</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/建造者模式/" style="font-size: 10px;">建造者模式</a> <a href="/tags/持续集成/" style="font-size: 20px;">持续集成</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
+            <a href="/tags/ArrayList-List/" style="font-size: 10px;">ArrayList List</a> <a href="/tags/HashMap-Map/" style="font-size: 10px;">HashMap Map</a> <a href="/tags/Hystrix/" style="font-size: 10px;">Hystrix</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SQL-Mysql/" style="font-size: 15px;">SQL Mysql</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/StateFulSet/" style="font-size: 10px;">StateFulSet</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Taint/" style="font-size: 10px;">Taint</a> <a href="/tags/Toleration/" style="font-size: 10px;">Toleration</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/configmap/" style="font-size: 10px;">configmap</a> <a href="/tags/deployment/" style="font-size: 10px;">deployment</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/helm/" style="font-size: 15px;">helm</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/k8s/" style="font-size: 20px;">k8s</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nodeAffinity/" style="font-size: 10px;">nodeAffinity</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/volumes/" style="font-size: 10px;">volumes</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/工厂模式/" style="font-size: 10px;">工厂模式</a> <a href="/tags/建造者模式/" style="font-size: 10px;">建造者模式</a> <a href="/tags/持续集成/" style="font-size: 15px;">持续集成</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a> <a href="/tags/高并发/" style="font-size: 10px;">高并发</a>
         </div>
     </div>
 
@@ -1077,7 +1017,6 @@
       s.parentNode.insertBefore(hm, s);
     })();
 </script>
-
         
 
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
